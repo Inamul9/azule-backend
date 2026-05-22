@@ -24,6 +24,10 @@ router.get('/', async (req, res) => {
 router.put('/', auth, async (req, res) => {
   try {
     let settings = await WebsiteSettings.findOne();
+    if (req.body._id) {
+      delete req.body._id;
+    }
+    
     if (!settings) {
       settings = new WebsiteSettings(req.body);
     } else {
@@ -32,7 +36,8 @@ router.put('/', auth, async (req, res) => {
     await settings.save();
     res.json(settings);
   } catch (err) {
-    res.status(500).send('Server error');
+    console.error("Settings Save Error:", err);
+    res.status(500).json({ message: err.message });
   }
 });
 

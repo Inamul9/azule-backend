@@ -30,6 +30,15 @@ const websiteSettingsSchema = new mongoose.Schema({
     details: [{ type: String }]
   }],
 
+  // Unit Plans
+  unitPlans: [{
+    title: { type: String },
+    type: { type: String },
+    area: { type: String },
+    image: { type: String },
+    features: [{ type: String }]
+  }],
+
   // SEO Settings
   seo: {
     metaTitle: { type: String, default: "AZULE | Luxury Residences Goa" },

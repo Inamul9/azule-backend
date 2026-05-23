@@ -30,15 +30,6 @@ const websiteSettingsSchema = new mongoose.Schema({
     details: [{ type: String }]
   }],
 
-  // Unit Plans
-  unitPlans: [{
-    title: { type: String },
-    type: { type: String },
-    area: { type: String },
-    image: { type: String },
-    features: [{ type: String }]
-  }],
-
   // SEO Settings
   seo: {
     metaTitle: { type: String, default: "AZULE | Luxury Residences Goa" },
@@ -53,7 +44,15 @@ const websiteSettingsSchema = new mongoose.Schema({
     linkedin: { type: String, default: "https://linkedin.com" },
     youtube: { type: String, default: "https://youtube.com" }
   },
-  reraNumber: { type: String, default: "PRGO10252558" }
+  reraNumber: { type: String, default: "PRGO10252558" },
+  allianceImages: { type: [String], default: [
+    "/images/WhatsApp Image 2026-05-24 at 12.08.28 AM.jpeg",
+    "/images/WhatsApp Image 2026-05-24 at 12.08.28 AM (1).jpeg",
+    "/images/WhatsApp Image 2026-05-24 at 12.08.28 AM (2).jpeg",
+    "/images/WhatsApp Image 2026-05-24 at 12.08.28 AM (3).jpeg",
+    "/images/WhatsApp Image 2026-05-24 at 12.08.28 AM (4).jpeg",
+    "/images/WhatsApp Image 2026-05-24 at 12.08.28 AM (5).jpeg"
+  ] }
 }, { timestamps: true });
 
 module.exports = mongoose.model('WebsiteSettings', websiteSettingsSchema);

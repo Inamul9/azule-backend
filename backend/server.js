@@ -261,24 +261,9 @@ const getSettings = () => {
   };
 };
 
-// Root Route
+// Root Route (Redirects to Admin Dashboard since frontend is hosted separately)
 app.get('/', (req, res) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  res.render('index', {
-    title: 'SOIL VILLAGE – Solang Valley, Manali | Premium Camping & Adventure Retreat',
-    settings: getSettings(),
-    isAdmin: checkAuth(req)
-  });
-});
-
-// Terms & Conditions Route
-app.get(['/terms', '/terms.html'], (req, res) => {
-  const settings = getSettings();
-  res.render('terms', {
-    title: `Terms & Conditions | ${settings.global && settings.global.siteName ? settings.global.siteName : 'Soil Village'}`,
-    settings: settings,
-    isAdmin: checkAuth(req)
-  });
+  res.redirect('/admin/dashboard');
 });
 
 // API endpoint for bookings

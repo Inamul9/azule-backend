@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playball&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: auto; /* Required for Lenis smooth scroll */
+    background-color: #030704; /* Ultra-luxury obsidian-emerald deep background */
+    color: #f7f4eb; /* Silk-cream soft text for premium dark readability */
+    overflow-x: hidden;
+  }
+  
+  body {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background-color: #030704;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    color: #fcfaf2;
+  }
+
+  /* Custom Premium Scrollbar for Dark Luxury Mode */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #030704;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e2c21;
+    border-radius: 4px;
+    border: 2px solid #030704;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c5a880;
+  }
+}
+
+/* Custom Glassmorphism Styles - Re-themed for High-End Obsidian Gold Luxury */
+.glass-panel {
+  background: rgba(6, 12, 8, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 168, 128, 0.16);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6);
+}
+
+.glass-panel-light {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.glass-panel-gold {
+  background: rgba(12, 20, 14, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  box-shadow: 0 15px 40px rgba(197, 168, 128, 0.08);
+}
+
+.glass-card-cream {
+  background: rgba(10, 16, 12, 0.95);
+  border: 1px solid rgba(197, 168, 128, 0.22);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Custom Mouse Glow Cursor - Golden Star Dust Aura */
+.cursor-glow {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(197, 168, 128, 0.09) 0%, rgba(16, 185, 129, 0.02) 50%, rgba(0, 0, 0, 0) 70%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  transition: transform 0.15s ease-out;
+}
+
+/* Polaroids / Floating Image Collage Styling - Midnight Gold Borders */
+.polaroid {
+  background: #0b110d;
+  padding: 12px 12px 32px 12px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Authentic paper texture on Polaroids */
+.polaroid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(197, 168, 128, 0.05) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.polaroid:hover {
+  transform: translateY(-12px) scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 25px rgba(197, 168, 128, 0.25);
+  border-color: rgba(197, 168, 128, 0.6);
+  z-index: 20;
+}
+
+/* Lenis scroll styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Tilt effects */
+.tilt-card {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.tilt-inner {
+  transform: translateZ(30px);
+}
+
+/* Timeline specific styles */
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #c5a880;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #c5a880;
+}
+
+/* Wave Footer Divider Animation */
+.wave-svg {
+  animation: wave-motion 12s linear infinite;
+}
+
+.wave-svg-slow {
+  animation: wave-motion 20s linear infinite;
+}
+
+@keyframes wave-motion {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Lightbox Preview */
+.lightbox {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Premium Glassmorphic and Stardust Glows */
+.shadow-glass-gold {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 16px 0 rgba(197, 168, 128, 0.15);
+}
+
+.shadow-gold-glow {
+  box-shadow: 0 0 25px 3px rgba(197, 168, 128, 0.35);
+}
+
+.bg-gold-glow {
+  background-color: #d4af37;
+  box-shadow: 0 0 25px rgba(197, 168, 128, 0.5);
+}
+
+.text-gold-glow {
+  color: #dfc396;
+  text-shadow: 0 0 6px rgba(197, 168, 128, 0.4);
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .7; transform: scale(1.04); }
+}
+
+/* Luxury Glowing Gradient Text Helpers */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fff 0%, #dfc396 50%, #b8976b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Premium Card Border Gradient Flare */
+.tilt-card {
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(197, 168, 128, 0.12) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  -webkit-mask-composite: exclude;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+.tilt-card:hover::before {
+  background: linear-gradient(135deg, #c5a880 0%, rgba(16, 185, 129, 0.2) 50%, #ffd700 100%);
+}
+
+/* Clean grid pattern style for dark luxury dashboard */
+.bg-grid-pattern {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(197, 168, 128, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 168, 128, 0.02) 1px, transparent 1px);
+}
+
+/* Love Theme Overrides */
+.theme-love {
+  background-color: #1a0508 !important;
+}
+.theme-love .bg-forest-deep, .theme-love .bg-\[\#07160c\] {
+  background-color: #240a11 !important;
+}
+.theme-love .bg-forest-dark, .theme-love .bg-\[\#0d2818\] {
+  background-color: #3b121d !important;
+}
+.theme-love .bg-\[\#030704\] {
+  background-color: #1a0508 !important;
+}
+.theme-love .bg-\[\#060c08\] {
+  background-color: #2b0c15 !important;
+}
+.theme-love .text-gold {
+  color: #ff8fa3 !important;
+}
+.theme-love .text-gold\/60 {
+  color: rgba(255, 143, 163, 0.6) !important;
+}
+.theme-love .border-gold\/10 {
+  border-color: rgba(255, 143, 163, 0.1) !important;
+}
+.theme-love .border-gold\/20 {
+  border-color: rgba(255, 143, 163, 0.2) !important;
+}
+.theme-love .border-gold\/30 {
+  border-color: rgba(255, 143, 163, 0.3) !important;
+}
+.theme-love .bg-gold {
+  background-color: #ff8fa3 !important;
+  color: #1a0508 !important;
+}
+.theme-love .bg-gold\/10 {
+  background-color: rgba(255, 143, 163, 0.1) !important;
+}
+.theme-love .text-forest-deep {
+  color: #1a0508 !important;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+
+/* Vibrant Animations & Glows */
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  25% { transform: translate(20px, -30px) scale(1.2); opacity: 0.8; }
+  50% { transform: translate(-10px, -50px) scale(0.9); opacity: 0.6; }
+  75% { transform: translate(-30px, 20px) scale(1.1); opacity: 0.9; }
+}
+
+.animate-float-orb {
+  animation: float-orb 15s infinite ease-in-out alternate;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-text {
+  background-size: 200% auto;
+  animation: gradient-shift 4s linear infinite;
+}
+
+.hover-glow-accent:hover {
+  box-shadow: 0 0 25px rgba(255, 91, 127, 0.4), inset 0 0 10px rgba(0, 243, 255, 0.2);
+  border-color: rgba(255, 215, 0, 0.8);
+}

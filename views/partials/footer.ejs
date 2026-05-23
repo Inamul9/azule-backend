@@ -1,0 +1,280 @@
+<!-- 5. Footer Section -->
+<% 
+  const footer = (typeof settings !== 'undefined' && settings && settings.footer) ? settings.footer : {
+    phone: '+91 96506 40715',
+    email: 'escape@soilvillage.com',
+    location: 'Solang Valley, Manali,\nHimachal Pradesh, India',
+    location_map_url: 'https://maps.google.com/?q=Solang+Valley,+Manali,+Himachal+Pradesh,+India',
+    whatsapp: '919650640715',
+    social: {
+      instagram: 'https://instagram.com/soilvillage',
+      facebook: 'https://facebook.com/soilvillage',
+      youtube: 'https://youtube.com/@soilvillage'
+    }
+  };
+  const footerSocial = footer.social || {};
+%>
+
+<style>
+/* Social icon brand colors with glow on hover */
+.social-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(197,168,128,0.25);
+  background: rgba(255,255,255,0.03);
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+.social-icon-wrap svg {
+  width: 16px;
+  height: 16px;
+  transition: all 0.35s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Instagram */
+.social-insta svg { color: #c4417a; }
+.social-insta:hover {
+  border-color: #f09433;
+  background: linear-gradient(135deg, rgba(240,148,51,0.18) 0%, rgba(196,65,122,0.2) 50%, rgba(100,37,219,0.18) 100%);
+  box-shadow: 0 0 16px rgba(196,65,122,0.55), 0 0 32px rgba(196,65,122,0.25), inset 0 0 12px rgba(196,65,122,0.08);
+  transform: translateY(-3px) scale(1.08);
+}
+.social-insta:hover svg { color: #f09433; filter: drop-shadow(0 0 4px #f09433); }
+
+/* Facebook */
+.social-fb svg { color: #1877f2; }
+.social-fb:hover {
+  border-color: #1877f2;
+  background: rgba(24,119,242,0.15);
+  box-shadow: 0 0 16px rgba(24,119,242,0.55), 0 0 32px rgba(24,119,242,0.25), inset 0 0 12px rgba(24,119,242,0.08);
+  transform: translateY(-3px) scale(1.08);
+}
+.social-fb:hover svg { filter: drop-shadow(0 0 5px #1877f2); }
+
+/* YouTube */
+.social-yt svg { color: #ff0000; }
+.social-yt:hover {
+  border-color: #ff0000;
+  background: rgba(255,0,0,0.13);
+  box-shadow: 0 0 16px rgba(255,0,0,0.6), 0 0 32px rgba(255,0,0,0.25), inset 0 0 12px rgba(255,0,0,0.08);
+  transform: translateY(-3px) scale(1.08);
+}
+.social-yt:hover svg { filter: drop-shadow(0 0 5px #ff0000); }
+
+/* Footer contact hover */
+.footer-link {
+  transition: color 0.25s ease;
+}
+.footer-link:hover { color: #c5a880; }
+
+.designer-attribution {
+  transition: all 0.3s ease;
+}
+.designer-attribution:hover {
+  text-shadow: 0 0 10px rgba(197,168,128,0.7);
+  color: #ffd700;
+}
+.designer-attribution:active {
+  text-shadow: 0 0 20px rgba(197,168,128,1), 0 0 30px rgba(197,168,128,0.8);
+  color: #ffffff;
+  transform: scale(0.95);
+}
+</style>
+
+<footer class="relative bg-forest-deep pt-16 pb-8 border-t border-gold/10 overflow-hidden z-10">
+  <!-- Starry backdrop for Footer -->
+  <div class="stars-container absolute top-0 left-0 w-full h-full pointer-events-none opacity-20"></div>
+
+  <!-- Animated Wave Divider -->
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-[0] h-6 pointer-events-none">
+    <svg class="relative block w-[200%] h-full wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="none">
+      <path
+        d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
+        fill="#0d2818" opacity="0.4"></path>
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 pb-12 border-b border-cream/10">
+
+      <!-- Column 1: Branding + Social -->
+      <div class="md:col-span-1 flex flex-col space-y-4">
+        <div class="flex items-center space-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5">
+            <path d="M2 21h20M12 3l10 16H2L12 3z" />
+          </svg>
+          <span class="font-cinzel text-lg font-bold tracking-widest text-cream">SOIL VILLAGE</span>
+        </div>
+        <p class="text-sm font-sans font-light text-cream/70 leading-relaxed max-w-sm">
+          An ultra-premium mountain camping retreat situated in the heart of Solang Valley, Manali. Stay amidst winding
+          rivers, snow peaks, and experience nature in pure luxury.
+        </p>
+        <!-- Social Icons with real brand colors -->
+        <div class="flex items-center space-x-3 pt-2">
+
+          <!-- Instagram -->
+          <a href="<%= footerSocial.instagram || '#' %>" target="_blank" rel="noopener noreferrer"
+            class="social-icon-wrap social-insta" aria-label="Instagram" title="Follow on Instagram">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+          </a>
+
+          <!-- Facebook -->
+          <a href="<%= footerSocial.facebook || '#' %>" target="_blank" rel="noopener noreferrer"
+            class="social-icon-wrap social-fb" aria-label="Facebook" title="Follow on Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a href="<%= footerSocial.youtube || '#' %>" target="_blank" rel="noopener noreferrer"
+            class="social-icon-wrap social-yt" aria-label="YouTube" title="Subscribe on YouTube">
+            <svg fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.107C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.388.511a3.002 3.002 0 00-2.11 2.107C0 8.053 0 12 0 12s0 3.947.502 5.837a3.003 3.003 0 002.11 2.107c1.883.511 9.388.511 9.388.511s7.505 0 9.388-.511a3.002 3.002 0 002.11-2.107c.502-1.89.502-5.837.502-5.837s0-3.947-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="flex flex-col space-y-4 md:pl-4">
+        <h4 class="font-cinzel text-sm font-bold tracking-widest text-gold">EXPLORE</h4>
+        <ul class="space-y-2.5 text-sm font-sans font-light text-cream/70">
+          <li><a href="#hero" class="footer-link hover:text-gold transition-colors duration-300">Home Base</a></li>
+          <li><a href="#map" class="footer-link hover:text-gold transition-colors duration-300">Route Map</a></li>
+          <li><a href="#experience" class="footer-link hover:text-gold transition-colors duration-300">The Experience</a></li>
+          <li><a href="#itinerary" class="footer-link hover:text-gold transition-colors duration-300">Camping Itinerary</a></li>
+          <li><a href="#gallery" class="footer-link hover:text-gold transition-colors duration-300">Retreat Gallery</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact Info -->
+      <div class="flex flex-col space-y-4">
+        <h4 class="font-cinzel text-sm font-bold tracking-widest text-gold">THE CAMP</h4>
+        <ul class="space-y-3.5 text-sm font-sans font-light text-cream/70">
+          <!-- Location -->
+          <li class="flex items-start space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold shrink-0 mt-0.5" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <a href="<%= footer.location_map_url || 'https://maps.google.com' %>" target="_blank" rel="noopener noreferrer"
+              class="footer-link hover:text-gold transition-colors duration-300">
+              <%- (footer.location || 'Solang Valley, Manali').replace(/\n/g, '<br>') %>
+            </a>
+          </li>
+          <!-- Phone -->
+          <li class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold shrink-0" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <a href="tel:<%= (footer.phone || '+919650640715').replace(/[\s\-\(\)]/g, '') %>"
+              class="footer-link hover:text-gold transition-colors duration-300">
+              <%= footer.phone || '+91 96506 40715' %>
+            </a>
+          </li>
+          <!-- Email -->
+          <li class="flex items-center space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold shrink-0" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <a href="mailto:<%= footer.email || 'escape@soilvillage.com' %>"
+              class="footer-link hover:text-gold transition-colors duration-300">
+              <%= footer.email || 'escape@soilvillage.com' %>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Quick Booking Link -->
+      <div class="flex flex-col space-y-4">
+        <h4 class="font-cinzel text-sm font-bold tracking-widest text-gold">RESERVATIONS</h4>
+        <p class="text-xs font-sans font-light text-cream/50 leading-relaxed">
+          Ready to secure your camp tent under the stars? Secure your reservation directly via our simple online
+          gateway.
+        </p>
+        <a href="#book"
+          class="inline-block text-center glass-panel bg-gold/10 hover:bg-gold hover:text-forest-deep text-gold px-4 py-2.5 rounded text-xs font-semibold tracking-widest uppercase transition-all duration-300 shadow-sm">
+          Book Stay Now
+        </a>
+      </div>
+
+    </div>
+
+    <div
+      class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs font-sans font-light text-cream/40 space-y-4 md:space-y-0">
+      <div>
+        &copy; 2026 Soil Village Solang Valley, Manali. All Rights Reserved.
+      </div>
+      <div class="flex space-x-6">
+        <a href="terms.html#privacy" class="hover:text-gold transition-colors duration-300">Privacy Policy</a>
+        <a href="terms.html#tos" class="hover:text-gold transition-colors duration-300">Terms of Service</a>
+        <a href="terms.html#cancellation" class="hover:text-gold transition-colors duration-300">Cancellation Policy</a>
+      </div>
+    </div>
+
+    <!-- Centered Attribution -->
+    <div class="pt-6 mt-6 border-t border-cream/5 text-center">
+      <p class="text-xs font-sans font-light text-cream/35 tracking-widest uppercase">
+        Designed by 
+        <a href="https://ankurdigital.in" target="_blank" rel="noopener noreferrer" 
+           class="designer-attribution text-gold font-semibold tracking-wider transition-all duration-300 relative inline-block px-1">
+          ankurdigital.in
+        </a>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Floating WhatsApp Chat Button -->
+<div class="fixed bottom-28 md:bottom-6 right-6 z-[999999] flex items-center justify-end group">
+  <!-- Tooltip -->
+  <span
+    class="mr-3 px-3 py-1.5 rounded-lg bg-forest-dark/95 border border-gold/25 text-[10px] font-sans font-bold tracking-widest text-gold uppercase opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-xl backdrop-blur-md translate-x-2 group-hover:translate-x-0 transform inline-block whitespace-nowrap">
+    Chat with us
+  </span>
+  <!-- Link -->
+  <a href="https://wa.me/<%= footer.whatsapp || '919650640715' %>?text=Hello%20Soil%20Village%20team!%20I'd%20love%20to%20book%20a%20luxury%20camping%20stay."
+    target="_blank" rel="noopener noreferrer"
+    class="relative w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-[0_0_20px_rgba(16,185,129,0.25)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] border border-emerald-500/30"
+    style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 78, 59, 0.4) 100%); backdrop-filter: blur(12px);"
+    aria-label="Chat on WhatsApp">
+    <!-- Pulsing Outer Ring -->
+    <span class="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping opacity-75"></span>
+    <!-- SVG WhatsApp Icon -->
+    <svg class="w-7 h-7 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300"
+      viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.458h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
+    </svg>
+  </a>
+</div>
+
+<!-- Core Client Interaction Scripts -->
+<script src="/js/preloader.js?v=2.4"></script>
+<script src="/js/three-bg.js?v=2.4"></script>
+<script src="/js/three-route-map.js?v=2.4"></script>
+<script src="/js/three-camp-element.js?v=2.4"></script>
+<script src="/js/main.js?v=2.4"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/output.css">
+</head>
+<body class="bg-forest-deep text-cream selection:bg-gold selection:text-forest-deep flex items-center justify-center min-h-screen relative overflow-hidden">
+
+  <!-- Ambient star backdrop -->
+  <div class="absolute inset-0 stars-container pointer-events-none opacity-40"></div>
+  <script>
+    // Spawn simple stars locally for 404 since full library main.js isn't loaded
+    const starCount = 30;
+    const container = document.querySelector('.stars-container');
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.style.position = 'absolute';
+      star.style.backgroundColor = Math.random() > 0.7 ? '#ffd700' : '#ffffff';
+      star.style.borderRadius = '50%';
+      star.style.width = `${Math.random() * 2 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.boxShadow = '0 0 3px currentColor';
+      container.appendChild(star);
+    }
+  </script>
+
+  <div class="max-w-md mx-auto px-6 text-center relative z-10">
+    <!-- Mountain Logo -->
+    <div class="flex justify-center mb-6">
+      <div class="glass-panel-gold rounded-full p-5 border border-gold/30 shadow-gold-glow bg-forest-dark/40">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Headers -->
+    <h1 class="font-cinzel text-5xl font-black tracking-widest text-gold mb-2">404</h1>
+    <h2 class="font-cinzel text-lg font-bold tracking-widest text-cream uppercase mb-4">Camp Lost in Shadows</h2>
+    
+    <p class="text-sm font-sans font-light text-cream/70 leading-relaxed mb-8">
+      The trail you are exploring seems to be blocked by heavy mountain mist or has been reclaimed by forest wilderness. Let us navigate you back to safety.
+    </p>
+
+    <!-- Return button -->
+    <a href="/" class="inline-block px-8 py-4 bg-gold hover:bg-gold-glow text-forest-deep font-sans font-bold text-xs tracking-widest uppercase rounded shadow-lg shadow-gold/20 transition-all duration-300">
+      Back to Home Camp
+    </a>
+  </div>
+
+</body>
+</html>

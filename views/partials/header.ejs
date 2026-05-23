@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Immersive luxury mountain camping & adventure retreat in Solang Valley, Manali. Stay at cozy bonfire camps, experience trekking, hiking, scenic river valley views, and make unforgettable memories. 1 Nights / 2 Days. Pickup Delhi.">
+  <meta name="keywords"
+    content="Soil Village, Solang Valley, Manali, Camping Manali, Trekking Manali, Renush sh Homestay, Soyal, Delhi to Manali Camp, Luxury Camping, Mountain Retreat">
+  <meta name="author" content="Soil Village">
+
+  <title>
+    <%= title %>
+  </title>
+
+  <!-- Tailwind Output Style -->
+  <link rel="stylesheet" href="/css/output.css">
+
+  <!-- Core Libraries CDNs (Loaded synchronously in head or defer for rapid page presentation) -->
+  <!-- Three.js for 3D Particle Backdrop -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- OrbitControls for Interactive Route Map -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- GSAP Core & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><path d=%22M50 15 L85 75 L15 75 Z%22 fill=%22%23c5a880%22/></svg>">
+</head>
+
+<body class="bg-[#030704] text-[#f7f4eb] selection:bg-gold selection:text-[#030704] relative min-h-screen">
+
+  <!-- 1. Ambient Particle Backdrop Canvas (Three.js powered) -->
+  <canvas id="three-bg-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- 2. Mouse Glow Cursor Overlay -->
+  <div class="cursor-glow hidden md:block"></div>
+
+  <!-- 3. Header Navbar -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 bg-transparent transition-all duration-500 ease-in-out py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+      <!-- Brand Logo & Name -->
+      <a href="#hero" class="navbar-brand flex items-center space-x-3 group cursor-pointer z-50">
+        <!-- SVG Camping Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg"
+          class="h-9 w-9 text-gold group-hover:text-gold-glow transition-all duration-300 transform group-hover:scale-105"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M2 21h20M12 3l10 16H2L12 3z" />
+          <path d="M12 3v16M8 15h8M12 11l-3 4M12 11l3 4" />
+          <circle cx="12" cy="7" r="1" fill="currentColor" />
+        </svg>
+        <div class="flex flex-col">
+          <span
+            class="font-cinzel text-lg md:text-xl font-bold tracking-widest text-[#fcfaf2] group-hover:text-gold transition-colors duration-300">SOIL
+            VILLAGE</span>
+          <span
+            class="text-[9px] font-sans tracking-[0.3em] text-gold/80 -mt-1 group-hover:text-[#fcfaf2] transition-colors duration-300">MANALI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav
+        class="hidden md:flex items-center space-x-8 font-sans font-semibold text-sm tracking-widest text-[#fcfaf2]/80">
+        <a href="#hero"
+          class="nav-desktop-item hover:text-gold transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all after:duration-300">HOME</a>
+        <a href="#map"
+          class="nav-desktop-item hover:text-gold transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all after:duration-300">3D
+          ROUTE</a>
+        <a href="#experience"
+          class="nav-desktop-item hover:text-gold transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all after:duration-300">EXPERIENCE</a>
+        <a href="#itinerary"
+          class="nav-desktop-item hover:text-gold transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all after:duration-300">ITINERARY</a>
+        <a href="#gallery"
+          class="nav-desktop-item hover:text-gold transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all after:duration-300">GALLERY</a>
+        <a href="#about"
+          class="nav-desktop-item hover:text-gold transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-gold hover:after:w-full after:transition-all after:duration-300">ABOUT</a>
+      </nav>
+
+      <!-- Reservation Call To Action -->
+      <div class="hidden md:block">
+        <a href="#book"
+          class="nav-book-btn glass-panel-gold hover:bg-gold hover:text-[#030704] text-gold px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-500 border border-gold/45 shadow-md transform hover:-translate-y-0.5">
+          Reserve Stay
+        </a>
+      </div>
+
+      <!-- Mobile Menu Hamburger Button -->
+      <button id="mobile-menu-toggle"
+        class="md:hidden flex flex-col justify-between w-6 h-4 z-50 text-[#fcfaf2] focus:outline-none relative"
+        aria-label="Toggle Mobile Menu">
+        <span
+          class="w-full h-[1.5px] bg-[#fcfaf2] rounded transition-all duration-300 origin-left burger-line-1"></span>
+        <span class="w-full h-[1.5px] bg-[#fcfaf2] rounded transition-all duration-300 burger-line-2"></span>
+        <span
+          class="w-full h-[1.5px] bg-[#fcfaf2] rounded transition-all duration-300 origin-left burger-line-3"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- 4. Mobile Navigation Drawer Slider -->
+  <div id="mobile-menu"
+    class="fixed top-0 right-0 w-[80%] max-w-[380px] h-full bg-[#050806] border-l border-gold/15 z-40 transform translate-x-full transition-transform duration-500 ease-out flex flex-col justify-center px-8 shadow-2xl py-20">
+    <!-- Star elements inside drawer -->
+    <div class="stars-container absolute top-0 left-0 w-full h-full pointer-events-none opacity-40"></div>
+
+    <nav class="flex flex-col space-y-6 font-cinzel text-lg tracking-widest mb-12 relative z-10">
+      <a href="#hero"
+        class="hover:text-gold text-[#fcfaf2] transition-colors duration-300 flex items-center space-x-3 py-2 border-b border-white/5">
+        <span class="text-xs text-gold font-mono">01 //</span>
+        <span>HOME</span>
+      </a>
+      <a href="#map"
+        class="hover:text-gold text-[#fcfaf2] transition-colors duration-300 flex items-center space-x-3 py-2 border-b border-white/5">
+        <span class="text-xs text-gold font-mono">02 //</span>
+        <span>3D ROUTE</span>
+      </a>
+      <a href="#experience"
+        class="hover:text-gold text-[#fcfaf2] transition-colors duration-300 flex items-center space-x-3 py-2 border-b border-white/5">
+        <span class="text-xs text-gold font-mono">03 //</span>
+        <span>EXPERIENCE</span>
+      </a>
+      <a href="#itinerary"
+        class="hover:text-gold text-[#fcfaf2] transition-colors duration-300 flex items-center space-x-3 py-2 border-b border-white/5">
+        <span class="text-xs text-gold font-mono">04 //</span>
+        <span>ITINERARY</span>
+      </a>
+      <a href="#gallery"
+        class="hover:text-gold text-[#fcfaf2] transition-colors duration-300 flex items-center space-x-3 py-2 border-b border-white/5">
+        <span class="text-xs text-gold font-mono">05 //</span>
+        <span>GALLERY</span>
+      </a>
+      <a href="#about"
+        class="hover:text-gold text-[#fcfaf2] transition-colors duration-300 flex items-center space-x-3 py-2 border-b border-white/5">
+        <span class="text-xs text-gold font-mono">06 //</span>
+        <span>ABOUT</span>
+      </a>
+    </nav>
+
+    <a href="#book"
+      class="bg-gold hover:bg-gold-warm text-[#030704] text-center py-3.5 rounded-full text-sm font-semibold tracking-widest uppercase transition-all duration-300 shadow-md">
+      Reserve Camp Stay
+    </a>
+
+    <div class="mt-16 text-center text-[#fcfaf2]/40 text-xs font-sans font-light">
+      <p><%= (settings.global && settings.global.siteName ? settings.global.siteName : 'SOIL VILLAGE').toUpperCase() %> – SOLANG VALLEY</p>
+      <p class="mt-1">Stay. Explore. Connect.</p>
+    </div>
+  </div>
+
+  <!-- Custom hamburger animation styles on menu open -->
+  <style>
+    #mobile-menu-toggle.active .burger-line-1 {
+      transform: rotate(45deg) translate(2px, -1px);
+    }
+
+    #mobile-menu-toggle.active .burger-line-2 {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+
+    #mobile-menu-toggle.active .burger-line-3 {
+      transform: rotate(-45deg) translate(2px, 1px);
+    }
+  </style>

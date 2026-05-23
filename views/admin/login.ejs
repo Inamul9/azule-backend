@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | <%= settings.global && settings.global.siteName ? settings.global.siteName : 'Soil Village' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c5a880;
+      --gold-bright: #e8c98a;
+      --gold-dim: #8a7258;
+      --forest: #030b06;
+      --forest-mid: #061210;
+      --cream: #f7f4eb;
+      --teal: #00e5cc;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--forest);
+      color: var(--cream);
+      display: flex;
+      align-items: stretch;
+    }
+
+    /* ─── CANVAS BACKGROUND ──────────────────────── */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ─── LAYOUT: SPLIT ─────────────────────────── */
+    .page-split {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Left atmospheric panel */
+    .panel-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0,229,204,0.04) 0%,
+        transparent 50%,
+        rgba(197,168,128,0.06) 100%
+      );
+      z-index: 0;
+    }
+
+    /* Mountain SVG silhouette */
+    .mountain-art {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .left-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .left-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(197,168,128,0.3);
+      border-radius: 50px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(197,168,128,0.07);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s ease forwards;
+    }
+
+    .left-badge .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .left-headline {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease forwards;
+    }
+
+    .left-headline span {
+      background: linear-gradient(90deg, var(--gold-bright), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .left-desc {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(247,244,235,0.45);
+      max-width: 400px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s ease forwards;
+    }
+
+    .left-stats {
+      display: flex;
+      gap: 36px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s ease forwards;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .stat-val {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+
+    .stat-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(247,244,235,0.3);
+    }
+
+    /* ─── RIGHT PANEL: LOGIN CARD ─────────────────── */
+    .panel-right {
+      width: min(480px, 100%);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 40px;
+      position: relative;
+    }
+
+    .panel-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(3,7,4,0.55);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-left: 1px solid rgba(197,168,128,0.1);
+      z-index: 0;
+    }
+
+    .login-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(30px);
+      animation: slideIn 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Brand Header */
+    .brand-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .brand-icon-wrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .brand-icon-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(197,168,128,0.2) 0%, transparent 70%);
+      animation: icon-glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes icon-glow {
+      0% { opacity: 0.5; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .brand-icon {
+      width: 56px;
+      height: 56px;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 12px rgba(197,168,128,0.4));
+    }
+
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    /* Section divider */
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(247,244,235,0.35);
+      text-align: center;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before, .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(197,168,128,0.25));
+    }
+
+    .section-title::after {
+      background: linear-gradient(90deg, rgba(197,168,128,0.25), transparent);
+    }
+
+    /* Error alert */
+    .error-alert {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .error-alert svg { flex-shrink: 0; color: #f87171; }
+    .error-alert span { font-size: 12px; color: #fca5a5; font-weight: 500; }
+
+    /* Form fields */
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(247,244,235,0.5);
+    }
+
+    .field-wrap {
+      position: relative;
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(197,168,128,0.4);
+      pointer-events: none;
+      transition: color 0.3s;
+    }
+
+    .field-wrap:focus-within .field-icon {
+      color: var(--teal);
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 14px 14px 14px 44px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      color: var(--cream);
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .field-input::placeholder {
+      color: rgba(247,244,235,0.18);
+      font-size: 12px;
+    }
+
+    .field-input:focus {
+      border-color: rgba(0,229,204,0.4);
+      background: rgba(0,229,204,0.04);
+      box-shadow: 0 0 0 3px rgba(0,229,204,0.08), 0 0 18px rgba(0,229,204,0.1);
+    }
+
+    /* Password eye toggle */
+    .eye-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(247,244,235,0.25);
+      padding: 0;
+      line-height: 0;
+      transition: color 0.2s;
+    }
+    .eye-toggle:hover { color: var(--gold); }
+
+    /* Submit button */
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, var(--gold) 0%, #b8955e 100%);
+      color: #030b06;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 8px;
+      box-shadow: 0 4px 20px rgba(197,168,128,0.25);
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(197,168,128,0.4);
+    }
+
+    .btn-submit:hover::before { opacity: 1; }
+    .btn-submit:active { transform: translateY(0); }
+
+    .btn-submit.loading {
+      opacity: 0.8;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Session info chip */
+    .session-chip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 8px 14px;
+      border-radius: 50px;
+      background: rgba(0,229,204,0.06);
+      border: 1px solid rgba(0,229,204,0.15);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: rgba(0,229,204,0.7);
+    }
+
+    .session-chip svg { width: 11px; height: 11px; }
+
+    /* Back link */
+    .back-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 24px;
+      font-size: 10px;
+      color: rgba(247,244,235,0.25);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.08em;
+    }
+
+    .back-link:hover { color: var(--gold); }
+
+    /* ─── SHARED ANIMATIONS ───────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── MOBILE: Stack layout ─────────────────────── */
+    @media (max-width: 768px) {
+      .page-split { flex-direction: column; overflow-y: auto; height: auto; min-height: 100vh; }
+      body { overflow: auto; }
+
+      .panel-left {
+        padding: 48px 28px 36px;
+        min-height: 200px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .left-headline { font-size: 2rem; }
+      .left-desc { display: none; }
+      .left-stats { justify-content: center; }
+
+      .panel-right {
+        width: 100%;
+        padding: 32px 24px 48px;
+        border-left: none;
+        border-top: 1px solid rgba(197,168,128,0.1);
+      }
+
+      .panel-right::before { border-left: none; border-top: 1px solid rgba(197,168,128,0.1); }
+    }
+
+    /* Loading spinner */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid rgba(3,11,6,0.3);
+      border-top-color: #030b06;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Particle Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="page-split">
+
+    <!-- LEFT: Atmospheric / Brand Panel -->
+    <div class="panel-left">
+
+      <!-- Mountain silhouette art -->
+      <svg class="mountain-art" viewBox="0 0 1440 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+        <defs>
+          <linearGradient id="mtnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#c5a880" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#c5a880" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- Far mountains -->
+        <polygon points="0,500 120,250 240,380 360,180 480,320 560,140 640,300 720,100 800,280 880,160 960,340 1080,80 1200,280 1320,200 1440,320 1440,500" fill="url(#mtnGrad)" opacity="0.4"/>
+        <!-- Near mountains -->
+        <polygon points="0,500 180,340 300,420 480,260 600,380 720,200 840,360 960,240 1080,400 1200,280 1380,420 1440,380 1440,500" fill="url(#mtnGrad)" opacity="0.6"/>
+        <!-- Foreground ridge -->
+        <polygon points="0,500 200,420 400,460 600,400 800,450 1000,390 1200,440 1440,400 1440,500" fill="#030b06" opacity="0.9"/>
+      </svg>
+
+      <!-- Stars scattered -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.5;pointer-events:none;z-index:1;" viewBox="0 0 800 600">
+        <circle cx="80" cy="60" r="1" fill="white" opacity="0.8"/><circle cx="150" cy="120" r="0.8" fill="white" opacity="0.6"/>
+        <circle cx="260" cy="45" r="1.2" fill="white" opacity="0.9"/><circle cx="380" cy="90" r="0.7" fill="white" opacity="0.5"/>
+        <circle cx="520" cy="30" r="1" fill="white" opacity="0.7"/><circle cx="620" cy="110" r="0.9" fill="white" opacity="0.8"/>
+        <circle cx="720" cy="55" r="1.1" fill="white" opacity="0.6"/><circle cx="170" cy="200" r="0.8" fill="white" opacity="0.5"/>
+        <circle cx="440" cy="150" r="1.3" fill="white" opacity="0.8"/>
+        <circle cx="340" cy="200" r="0.9" fill="#c5a880" opacity="0.8"/>
+        <circle cx="580" cy="180" r="1" fill="white" opacity="0.6"/>
+      </svg>
+
+      <!-- Content overlay -->
+      <div class="left-content">
+        <div class="left-badge">
+          <span class="dot"></span>
+          Secure Admin Access
+        </div>
+
+        <h2 class="left-headline">
+          Mountain<br><span>Wilderness</span><br>Control
+        </h2>
+
+        <p class="left-desc">
+          Access the Soil Village administrator portal. Manage bookings, edit site content, update packages, and control all aspects of your premium glamping retreat.
+        </p>
+
+        <div class="left-stats">
+          <div class="stat-item">
+            <span class="stat-val">24H</span>
+            <span class="stat-label">Session</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">JWT</span>
+            <span class="stat-label">Auth Token</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-val">256</span>
+            <span class="stat-label">Bit Secure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Login Card Panel -->
+    <div class="panel-right">
+      <div class="login-card">
+
+        <!-- Brand Header -->
+        <div class="brand-header">
+          <div class="brand-icon-wrap">
+            <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 21h20M12 3l10 16H2L12 3z" />
+              <path d="M12 8v8M9 16h6" />
+            </svg>
+          </div>
+          <div class="brand-name"><%= settings.global && settings.global.siteName ? settings.global.siteName.toUpperCase() : 'SOIL VILLAGE' %></div>
+          <div class="brand-sub">Administrator Portal</div>
+        </div>
+
+        <!-- Divider -->
+        <div class="section-title">Sign In</div>
+
+        <!-- Error alert -->
+        <% if (error) { %>
+          <div class="error-alert">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span><%= error %></span>
+          </div>
+        <% } %>
+
+        <!-- Form -->
+        <form action="/admin/login" method="POST" id="login-form">
+
+          <div class="field-group">
+            <label class="field-label" for="username">Username</label>
+            <div class="field-wrap">
+              <svg class="field-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                class="field-input"
+                placeholder="Enter your username"
+                autocomplete="username"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="password">Password</label>
+            <div class="field-wrap">
+              <svg class="field-icon" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="field-input"
+                placeholder="••••••••••"
+                autocomplete="current-password"
+                required
+              >
+              <button type="button" class="eye-toggle" id="eye-toggle" aria-label="Toggle password visibility">
+                <svg id="eye-open" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                <svg id="eye-closed" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:none;">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <span id="btn-text">Access Dashboard</span>
+          </button>
+
+        </form>
+
+        <!-- Session info -->
+        <div class="session-chip">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          JWT Secured · Session expires in 24 hours
+        </div>
+
+        <!-- Back to site -->
+        <a href="/" class="back-link">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Return to Main Website
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ─── PARTICLE CANVAS BACKGROUND ─────────────────────────────
+    (function() {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const PARTICLE_COUNT = 90;
+
+      class Particle {
+        constructor() { this.reset(true); }
+        reset(init) {
+          this.x = Math.random() * W;
+          this.y = init ? Math.random() * H : H + 10;
+          this.size = Math.random() * 1.4 + 0.3;
+          this.speed = Math.random() * 0.35 + 0.08;
+          this.opacity = Math.random() * 0.6 + 0.1;
+          this.drift = (Math.random() - 0.5) * 0.15;
+          // gold or teal tint
+          const r = Math.random();
+          this.color = r < 0.2 ? `rgba(197,168,128,${this.opacity})` :
+                       r < 0.35 ? `rgba(0,229,204,${this.opacity * 0.6})` :
+                       `rgba(247,244,235,${this.opacity})`;
+        }
+        update() {
+          this.y -= this.speed;
+          this.x += this.drift;
+          if (this.y < -5) this.reset(false);
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+      // Ambient gradient
+      function drawBg() {
+        const t = Date.now() / 8000;
+        const gx = W * (0.5 + 0.2 * Math.sin(t));
+        const gy = H * (0.4 + 0.15 * Math.cos(t * 0.7));
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Deep space gradient
+        const bg = ctx.createRadialGradient(gx, gy, 0, gx, gy, W * 0.9);
+        bg.addColorStop(0, 'rgba(0,30,20,0.4)');
+        bg.addColorStop(0.5, 'rgba(3,7,4,0.6)');
+        bg.addColorStop(1, 'rgba(2,5,3,0.9)');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+
+        // Gold accent glow (bottom right)
+        const g2 = ctx.createRadialGradient(W * 0.85, H * 0.85, 0, W * 0.85, H * 0.85, W * 0.5);
+        g2.addColorStop(0, 'rgba(197,168,128,0.08)');
+        g2.addColorStop(1, 'transparent');
+        ctx.fillStyle = g2;
+        ctx.fillRect(0, 0, W, H);
+
+        // Teal glow (top left)
+        const g3 = ctx.createRadialGradient(W * 0.1, H * 0.1, 0, W * 0.1, H * 0.1, W * 0.45);
+        g3.addColorStop(0, 'rgba(0,229,204,0.05)');
+        g3.addColorStop(1, 'transparent');
+        ctx.fillStyle = g3;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      function animate() {
+        drawBg();
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    // ─── PASSWORD TOGGLE ──────────────────────────────────────────
+    document.getElementById('eye-toggle').addEventListener('click', function() {
+      const pw = document.getElementById('password');
+      const eyeOpen   = document.getElementById('eye-open');
+      const eyeClosed = document.getElementById('eye-closed');
+      if (pw.type === 'password') {
+        pw.type = 'text';
+        eyeOpen.style.display = 'none';
+        eyeClosed.style.display = 'block';
+      } else {
+        pw.type = 'password';
+        eyeOpen.style.display = 'block';
+        eyeClosed.style.display = 'none';
+      }
+    });
+
+    // ─── FORM SUBMIT LOADING STATE ────────────────────────────────
+    document.getElementById('login-form').addEventListener('submit', function() {
+      const btn  = document.getElementById('submit-btn');
+      const text = document.getElementById('btn-text');
+      btn.classList.add('loading');
+      btn.disabled = true;
+      text.innerHTML = '<span class="spinner"></span>Authenticating...';
+    });
+  </script>
+
+</body>
+</html>

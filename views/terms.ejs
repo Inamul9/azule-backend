@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/output.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-forest-deep text-cream selection:bg-gold selection:text-forest-deep min-h-screen relative flex flex-col justify-between">
+
+  <!-- Ambient star backdrop -->
+  <div class="absolute inset-0 stars-container pointer-events-none opacity-25 z-0"></div>
+  <script>
+    // Spawn simple stars locally
+    const starCount = 40;
+    const container = document.querySelector('.stars-container');
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.style.position = 'absolute';
+      star.style.backgroundColor = Math.random() > 0.7 ? '#ffd700' : '#ffffff';
+      star.style.borderRadius = '50%';
+      star.style.width = `${Math.random() * 2 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.boxShadow = '0 0 3px currentColor';
+      container.appendChild(star);
+    }
+  </script>
+
+  <!-- Main Content Wrapper -->
+  <main class="flex-grow w-full max-w-4xl mx-auto px-6 py-16 relative z-10">
+    
+    <!-- Branding Header -->
+    <div class="text-center mb-12">
+      <a href="/" class="inline-flex items-center space-x-3 mb-6 hover:scale-105 transition-transform duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 21h20M12 3l10 16H2L12 3z" />
+        </svg>
+        <span class="font-cinzel text-xl font-bold tracking-widest text-cream"><%= (settings.global && settings.global.siteName ? settings.global.siteName : 'SOIL VILLAGE').toUpperCase() %></span>
+      </a>
+      <h1 class="font-cinzel text-3xl md:text-5xl font-extrabold tracking-widest text-gold uppercase drop-shadow-md">
+        POLICIES & TERMS
+      </h1>
+      <p class="text-xs font-sans font-light text-cream/60 tracking-widest uppercase mt-2">Last Updated: May 2026</p>
+      <div class="w-16 h-[2px] bg-gold mx-auto mt-4"></div>
+    </div>
+
+    <!-- Quick Navigation Tabs for the sections -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+      <a href="#tos" class="px-4 py-2 rounded-full border border-gold/25 bg-forest-dark/40 text-xs font-sans font-semibold tracking-wider uppercase text-gold hover:bg-gold hover:text-forest-deep transition-all duration-300">
+        Terms of Service
+      </a>
+      <a href="#cancellation" class="px-4 py-2 rounded-full border border-gold/25 bg-forest-dark/40 text-xs font-sans font-semibold tracking-wider uppercase text-gold hover:bg-gold hover:text-forest-deep transition-all duration-300">
+        Cancellation Policy
+      </a>
+      <a href="#privacy" class="px-4 py-2 rounded-full border border-gold/25 bg-forest-dark/40 text-xs font-sans font-semibold tracking-wider uppercase text-gold hover:bg-gold hover:text-forest-deep transition-all duration-300">
+        Privacy Policy
+      </a>
+      <a href="#government" class="px-4 py-2 rounded-full border border-gold/25 bg-forest-dark/40 text-xs font-sans font-semibold tracking-wider uppercase text-gold hover:bg-gold hover:text-forest-deep transition-all duration-300">
+        Govt Guidelines
+      </a>
+    </div>
+
+    <!-- Scrollable content sections container -->
+    <div class="space-y-12">
+      
+      <!-- Section 1: Terms of Service -->
+      <section id="tos" class="glass-panel bg-forest-dark/30 border border-gold/15 rounded-3xl p-8 md:p-10 shadow-2xl relative scroll-mt-6">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-2 h-6 bg-gold rounded-full"></div>
+          <h2 class="font-cinzel text-xl md:text-2xl font-bold tracking-widest text-gold uppercase">1. Terms of Service</h2>
+        </div>
+        <div class="space-y-4 text-sm font-sans font-light text-cream/80 leading-relaxed">
+          <p>
+            Welcome to Soil Village. By accessing our mountain camping retreat services, booking a stay, or utilizing our digital platform, you agree to comply with and be bound by the following Terms of Service.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Booking Agreement & Check-in</h3>
+          <p>
+            All guests must present a valid Government-approved ID (Aadhaar Card, Passport, or Voter ID) at the time of check-in. The primary guest must be at least 18 years of age. Reservations are confirmed only upon receipt of the advance payment specified during the reservation flow.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Guest Conduct & Wilderness Respect</h3>
+          <p>
+            Soil Village is located in an eco-sensitive highland zone of Solang Valley. Guests are expected to maintain the peace and natural purity of the retreat. Littering, damaging flora/fauna, or using unauthorized loudspeakers/audio setups that disturb wildlife or other campers is strictly prohibited.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Liability Disclaimer</h3>
+          <p>
+            Outdoor adventure activities (trekking, river crossings, camping) carry inherent natural risks. Soil Village and its staff are committed to high safety standards; however, we are not liable for any personal injury, loss of property, or delay caused by natural disasters, roadblocks, landslides, or severe weather conditions.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2: Cancellation Policy -->
+      <section id="cancellation" class="glass-panel bg-forest-dark/30 border border-gold/15 rounded-3xl p-8 md:p-10 shadow-2xl relative scroll-mt-6">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-2 h-6 bg-gold rounded-full"></div>
+          <h2 class="font-cinzel text-xl md:text-2xl font-bold tracking-widest text-gold uppercase">2. Cancellation & Booking Policy</h2>
+        </div>
+        <div class="space-y-4 text-sm font-sans font-light text-cream/80 leading-relaxed">
+          <p>
+            We understand that mountain expedition itineraries can change due to unexpected events. Our cancellation policies are designed to be fair to both our travelers and our camp maintenance schedules.
+          </p>
+          
+          <div class="overflow-x-auto my-6 rounded-xl border border-gold/10">
+            <table class="w-full text-left border-collapse text-xs md:text-sm">
+              <thead>
+                <tr class="bg-forest-deep/60 text-gold border-b border-gold/15">
+                  <th class="p-3 font-semibold uppercase tracking-wider">Cancellation Period</th>
+                  <th class="p-3 font-semibold uppercase tracking-wider">Refund Percentage</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gold/10 text-cream/70">
+                <tr>
+                  <td class="p-3">15 days or more prior to arrival date</td>
+                  <td class="p-3 font-semibold text-emerald-400">100% Refund</td>
+                </tr>
+                <tr>
+                  <td class="p-3">7 to 14 days prior to arrival date</td>
+                  <td class="p-3 font-semibold text-gold">50% Refund</td>
+                </tr>
+                <tr>
+                  <td class="p-3">Less than 7 days prior to arrival date</td>
+                  <td class="p-3 font-semibold text-red-400">No Refund (0%)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="font-semibold text-cream mt-4">Weather & Road Closures</h3>
+          <p>
+            In the event of landslides, heavy snow blocks, or official administrative orders preventing access to Solang Valley, we will issue a credit voucher of equal value. This voucher can be redeemed for booking at any alternative date within 12 months, subject to tent availability.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 3: Privacy Policy -->
+      <section id="privacy" class="glass-panel bg-forest-dark/30 border border-gold/15 rounded-3xl p-8 md:p-10 shadow-2xl relative scroll-mt-6">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-2 h-6 bg-gold rounded-full"></div>
+          <h2 class="font-cinzel text-xl md:text-2xl font-bold tracking-widest text-gold uppercase">3. Privacy Policy</h2>
+        </div>
+        <div class="space-y-4 text-sm font-sans font-light text-cream/80 leading-relaxed">
+          <p>
+            Your privacy is of extreme importance to us. This Privacy Policy describes how we collect, store, and utilize the details you provide during bookings.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Data Collection</h3>
+          <p>
+            We collect personal details such as your name, phone number, email address, travel dates, and payment history solely to confirm reservations, coordinate logistics, and keep you updated on safety alerts.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">No Third-Party Sharing</h3>
+          <p>
+            Your contact details are never rented, shared, or sold to third-party marketing companies. All data resides securely in our system.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Cookies & Analytics</h3>
+          <p>
+            Our website uses basic functional cookies to remember booking form entries and analyze high-level traffic parameters to maintain site performance and visual speed.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 4: Government Tourist Compliance -->
+      <section id="government" class="glass-panel bg-forest-dark/30 border border-gold/15 rounded-3xl p-8 md:p-10 shadow-2xl relative scroll-mt-6">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-2 h-6 bg-gold rounded-full"></div>
+          <h2 class="font-cinzel text-xl md:text-2xl font-bold tracking-widest text-gold uppercase">4. Manali Government Tourism Compliance</h2>
+        </div>
+        <div class="space-y-4 text-sm font-sans font-light text-cream/80 leading-relaxed">
+          <p>
+            Soil Village complies fully with the guidelines set by the Department of Tourism (Government of Himachal Pradesh) and the National Green Tribunal (NGT) to preserve the environment of Solang Valley.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Rohtang & Solang Valley Traffic Permits</h3>
+          <p>
+            As per local administration mandates, heavy tourist traffic towards Solang Valley and Rohtang Pass is strictly regulated. Guests traveling in private, non-Himachal Pradesh registered vehicles must secure valid local entry permits via the official government portal before driving up to high-altitude zones.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">Department of Tourism Adventure Sport Compliances</h3>
+          <p>
+            Under the Himachal Pradesh Aero Sports Rules, all paragliding, river rafting, skiing, and trekking activities in Solang Valley must be conducted only under licensed instructors and registered travel agencies. Self-conducted adventure sports without local safety clearances are illegal and not permitted inside or around Soil Village properties.
+          </p>
+          <h3 class="font-semibold text-cream mt-4">State Environmental Rules (Polythene Banned)</h3>
+          <p>
+            In accordance with Himachal Pradesh State laws, the use of plastic bags and single-use plastic cups/plates is strictly banned. Littering or disposing of non-biodegradable waste in Solang's eco-sensitive meadows or rivers carries heavy government fines and immediate cancellation of retreat reservations.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Return to Home Link -->
+    <div class="text-center mt-12">
+      <a href="/" class="inline-block px-8 py-4 bg-gold hover:bg-gold-light hover:shadow-gold-glow text-forest-deep font-sans font-bold text-xs tracking-widest uppercase rounded shadow-lg transition-all duration-300">
+        Return to Home Base
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Compact Footer with required attributions -->
+  <footer class="w-full py-8 border-t border-gold/10 bg-forest-deep text-center relative z-10 mt-16">
+    <p class="text-xs font-sans font-light text-cream/40 mb-3">
+      &copy; 2026 <%= settings.global && settings.global.siteName ? settings.global.siteName : 'Soil Village' %> Solang Valley, Manali. All Rights Reserved.
+    </p>
+    <p class="text-xs font-sans font-light text-cream/35 tracking-widest uppercase">
+      Designed by 
+      <a href="https://ankurdigital.in" target="_blank" rel="noopener noreferrer" 
+         class="designer-attribution text-gold font-semibold tracking-wider transition-all duration-300 relative inline-block px-1">
+        ankurdigital.in
+      </a>
+    </p>
+
+    <style>
+      .designer-attribution {
+        transition: all 0.3s ease;
+      }
+      .designer-attribution:hover {
+        text-shadow: 0 0 10px rgba(197, 168, 128, 0.7);
+        color: #ffd700;
+      }
+      .designer-attribution:active {
+        text-shadow: 0 0 20px rgba(197, 168, 128, 1), 0 0 30px rgba(197, 168, 128, 0.8);
+        color: #ffffff;
+        transform: scale(0.95);
+      }
+    </style>
+  </footer>
+
+</body>
+</html>

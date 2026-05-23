@@ -1,0 +1,233 @@
+{
+  "global": {
+    "siteName": "SINU VILLAGE"
+  },
+  "about": {
+    "title": "ABOUT SOIL VILLAGE",
+    "subtitle": "The Wilderness Brand",
+    "description1": "Soil Village represents the absolute pinnacle of premium outdoor mountain glamping retreats. Secluded within the spectacular pine borders of Solang Valley, Manali, our camp base is an oasis designed to let you escape the chaotic speeds of modern city life.",
+    "description2": "We combine rugged alpine exploration trails, scenic mountain summits, and winding pristine rivers with cozy campfire logs, warm tea servings, comfortable tents, and starry night sky gazing to carve unforgettable memories.",
+    "image": "/assets/camp_tent.png.jpeg"
+  },
+  "owner": {
+    "name": "Renush",
+    "title": "MEET",
+    "subtitle": "The Owner",
+    "designation": "CHIEF EXECUTIVE",
+    "philosophy": "LUXURY IN SILENCE",
+    "quote": "A synergy of survival expertise and premium vision. Renush founded this platform to bridge the gap between untamed wilderness and ultra-premium comfort.",
+    "image": "/assets/reenu.jpeg"
+  },
+  "catering": {
+    "items": [
+      {
+        "title": "Trail Refreshments",
+        "desc": "Fresh forest fruits and energy chocolates for peak hiking trails."
+      },
+      {
+        "title": "Hot Base Camp Lunch",
+        "desc": "Wholesome traditional mountain lunches cooked fresh at camp kitchens."
+      },
+      {
+        "title": "Evening Bonfire Tea & Snacks",
+        "desc": "Cozy hot tea with local snacks served directly at the fire hearth."
+      },
+      {
+        "title": "Luxury Campfire Dinner",
+        "desc": "Lavish warm dinners under lantern glow on alpine river shores."
+      },
+      {
+        "title": "Healthy Sunrise Breakfast",
+        "desc": "Fresh sunrise breakfast brew with warm flatbreads and eggs."
+      }
+    ]
+  },
+  "equipment": {
+    "title": "WebGL Inspector",
+    "tent": {
+      "title": "Luxury Geodesic Dome",
+      "subtitle": "1N/2D Glamping Haven",
+      "desc": "Inspect our luxurious custom double-insulated Geodesic Dome. Featuring architectural reinforcement frame grids, transparent panoramic bay windows overlooking high pines, and central hearth climate integration."
+    },
+    "compass": {
+      "title": "Mountain Navigation Core",
+      "subtitle": "Solar Brass Compass Dial",
+      "desc": "A premium high-fidelity solar brass compass system. Seamless fluid rotation and gold dial calibration, aligning perfectly to point true north relative to your mouse hover movements."
+    },
+    "campfire": {
+      "title": "Wilderness Fire Hearth",
+      "subtitle": "Rising Particle Glow Sparks",
+      "desc": "A high-fidelity campfire particle hearth. Features cross-stacked pine logs inside a natural rock barrier circle, venting real-time flickering lights and warm ember sparkles floating upwards."
+    },
+    "heart": {
+      "title": "Romantic Love Heart",
+      "subtitle": "Rose-Gold Metallic Core",
+      "desc": "A beautiful rose-gold extruded starlight heart. Designed for our exclusive Honeymoon package, surrounded by an elegant golden wireframe structural cage, orbiting custom diamonds, and cozy rising pink starry sparkles."
+    }
+  },
+  "route": {
+    "subtitle": "Premium Expedition Route",
+    "title": "SOLANG VALLEY BASE PATHWAY",
+    "desc": "Immerse yourself in the breathtaking landscapes of the Himalayas. Our itineraries ensure every moment of your mountain escape is filled with beauty and premium comfort."
+  },
+  "experience": {
+    "subtitle": "Sinu TESTING IT",
+    "title": "CAMPING SOLANG VALLEY",
+    "quote": "“Leave nothing but footprints, take nothing but memories.”",
+    "items": [
+      {
+        "title": "Trekking",
+        "desc": "Embark on a magnificent 2-hour guided trek scaling past green forests, alpine brooks, and high elevation mountain flora surrounding the valley camp.",
+        "label": "Solang High Peaks"
+      },
+      {
+        "title": "Nature & Adventure",
+        "desc": "Deep dive into pure unadulterated nature. Experience wild hiking ridges, evergreen coniferous woodlands, and local alpine mountain valleys.",
+        "label": "Coniferous Ridge"
+      },
+      {
+        "title": "Campfire",
+        "desc": "Gather around a cozy open crackling campfire log fire. Bond, share tales of mountain climbs, and enjoy absolute wilderness relaxation under star skies.",
+        "label": "Warm Sunset logs"
+      },
+      {
+        "title": "Scenic Views",
+        "desc": "Open your tent window to awe-inspiring layouts: snow peaks reaching into high blue sky clouds, crystalline pristine rivers, and mountain sunset glows.",
+        "label": "Breathtaking Vibe"
+      },
+      {
+        "title": "Relaxation",
+        "desc": "Disconnect from city noise and unwind to the quiet rustling of leaves, bird songs, and running river waters. Restore your mental energy.",
+        "label": "Serene Retreat"
+      },
+      {
+        "title": "Photography",
+        "desc": "Capture stunning compositions of alpine peaks, starry night heavens, bright bonfires, dynamic tents, and glowing sunbeams through pine needles.",
+        "label": "Alpine Captures"
+      }
+    ]
+  },
+  "showcase": {
+    "subtitle": "Interactive Showcase",
+    "title": "Sinu RETREAT REST",
+    "quote": "“Inspect our high-end glamping structures and adventure equipment in 3D WebGL”"
+  },
+  "packages": {
+    "subtitle": "Premium Expedition Route",
+    "solang": {
+      "title": "SOLANG VALLEY BASE PATHWAY",
+      "desc": "Immerse yourself in the breathtaking landscapes of the Himalayas. Our meticulously curated itineraries ensure every moment is filled with unparalleled luxury and comfort.",
+      "path_title": "SOLANG PATH ANALYSIS",
+      "path_desc": "Your premium mountain camping journey begins with a smooth pickup from Delhi, driving northward past beautiful Himalayan ranges to Manali, before climbing into our base at Solang Valley."
+    },
+    "spiti": {
+      "title": "SPITI VALLEY EXPEDITION LOOP",
+      "desc": "Embark on a high-altitude road trip. Traverse ancient monasteries, stark landscapes, and rugged terrains in our premium SUVs designed for adventure.",
+      "path_title": "SPITI EXPEDITION ROUTE",
+      "path_desc": "A magnificent high-altitude journey through the ancient Spiti Valley, passing through Shimla, Sangla, Kaza, Key Monastery, and breathtaking landscapes."
+    },
+    "honeymoon": {
+      "title": "HONEYMOON ROMANTIC ESCAPE",
+      "desc": "Celebrate your love in the serene luxury of the mountains. Enjoy private geodesic domes, candlelight dinners, and breathtaking sunsets tailored just for you.",
+      "path_title": "HONEYMOON STORY",
+      "path_desc": "A magical mountain escape crafted for couples — private geodesic dome stays, candlelight dinners under starlight, and breathtaking views of snow-capped peaks."
+    },
+    "family": {
+      "title": "MANALI FAMILY TOUR ROUTE",
+      "desc": "Create unforgettable memories with your loved ones. Experience the best attractions, from the snowy slopes of Solang Valley to comfortable hotel stays.",
+      "path_title": "FAMILY TOUR PATH",
+      "path_desc": "A perfectly paced family adventure through Manali's iconic spots — Solang Valley, Rohtang Pass, Hadimba Temple, and cozy hotel stays designed for all ages."
+    }
+  },
+  "footer": {
+    "phone": "+91 96506 40715",
+    "email": "escape@soilvillage.com",
+    "location": "Solang Valley, Manali,\nHimachal Pradesh, India",
+    "location_map_url": "https://maps.google.com/?q=Solang+Valley,+Manali,+Himachal+Pradesh,+India",
+    "whatsapp": "919650640715",
+    "social": {
+      "instagram": "https://instagram.com/sinu.sus",
+      "facebook": "https://facebook.com/soilvillage",
+      "youtube": "https://youtube.com/@soilvillage"
+    }
+  },
+  "itinerary": {
+    "subtitle": "Chronological Track",
+    "title": "CAMPING ITINERARY",
+    "sub_title_2": "SOLANG VALLEY RETREAT",
+    "days": [
+      {
+        "day": "01",
+        "title": "DAY 1: BASE CAMP SETTLE",
+        "items": [
+          {
+            "num": "01",
+            "title": "MEET & GREET",
+            "meta": "10:00 AM • El: 2,050m",
+            "desc": "Meet and greet at Renush sh Homestay, Soyal. Assembly briefing and guide allocation."
+          },
+          {
+            "num": "02",
+            "title": "2 HOUR ALPINE TREK",
+            "meta": "11:30 AM • El: 2,300m",
+            "desc": "After that we proceed for a scenic 2 hour trek up the valley ridges passing pristine pine boundaries."
+          },
+          {
+            "num": "03",
+            "title": "REACH CAMP & LUNCH",
+            "meta": "01:30 PM • El: 2,480m",
+            "desc": "Reach at camp, settle in premium glamping tents, and enjoy a hot wholesome mountain lunch."
+          },
+          {
+            "num": "04",
+            "title": "RELAX & EVENING TEA",
+            "meta": "04:30 PM • El: 2,480m",
+            "desc": "After lunch, relax in the serene environment. Fresh herbal sunset tea served directly next to the river banks."
+          },
+          {
+            "num": "05",
+            "title": "SNACKS & EXPLORATION",
+            "meta": "06:30 PM • El: 2,520m",
+            "desc": "Delicious warm starters served. Embark on a brief pine trail walk under rising twilight skies."
+          },
+          {
+            "num": "06",
+            "title": "CAMPFIRE DINNER",
+            "meta": "08:30 PM • El: 2,480m",
+            "desc": "Warm fireside dinner and comfortable overnight stay at base camp under starlight."
+          }
+        ]
+      },
+      {
+        "day": "02",
+        "title": "DAY 2: HIGHLAND HIKING",
+        "items": [
+          {
+            "num": "01",
+            "title": "EARLY TEA & SNACKS",
+            "meta": "06:00 AM • El: 2,480m",
+            "desc": "Early morning tea and snacks served at sunrise."
+          },
+          {
+            "num": "02",
+            "title": "1 HOUR SUMMIT HIKING",
+            "meta": "07:30 AM • El: 2,710m",
+            "desc": "Proceed for a 1 hour morning hiking session and return to base camp."
+          },
+          {
+            "num": "03",
+            "title": "LUNCH AT CAMP",
+            "meta": "01:00 PM • El: 2,480m",
+            "desc": "Fresh, piping-hot lunch served at camp."
+          },
+          {
+            "num": "04",
+            "title": "RETURN HOMESTAY",
+            "meta": "02:30 PM • El: 2,050m",
+            "desc": "After lunch, pack up and return safely to Renush sh Homestay with beautiful memories."
+          }
+        ]
+      }
+    ]
+  }
+}

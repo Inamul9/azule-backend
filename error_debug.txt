@@ -1,0 +1,6 @@
+TypeError: next is not a function
+    at model.<anonymous> (file:///C:/Users/noad8/OneDrive/Desktop/property/Archive/backend/models/Admin.js:25:3)
+    at async Kareem.execPre (C:\Users\noad8\OneDrive\Desktop\property\Archive\backend\node_modules\kareem\index.js:61:24)
+    at async model.$__save (C:\Users\noad8\OneDrive\Desktop\property\Archive\backend\node_modules\mongoose\lib\model.js:397:5)
+    at async model.save (C:\Users\noad8\OneDrive\Desktop\property\Archive\backend\node_modules\mongoose\lib\model.js:667:5)
+    at async seed (file:///C:/Users/noad8/OneDrive/Desktop/property/Archive/backend/seed.js:23:5)

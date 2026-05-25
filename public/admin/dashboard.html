@@ -1,0 +1,764 @@
+<tbody id="bookings-tbody"></tbody>
+              </table>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- ══════════ PACKAGES ══════════ -->
+      <section id="panel-packages" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Packages Editor</div>
+              <div class="card-subtitle">Dynamic Component</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'packages')">
+            <div class="field">
+              <label>Section Subtitle</label>
+              <input type="text" class="finput" name="packages_subtitle" value="">
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-head">⛰ Solang Valley Package</div>
+            <div class="form-row">
+              <div class="field"><label>Title</label><input type="text" class="finput" name="pkg_solang_title" value=""></div>
+              <div class="field"><label>Description</label><textarea class="ftextarea" name="pkg_solang_desc">/textarea></div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-head">🏔 Spiti Valley Package</div>
+            <div class="form-row">
+              <div class="field"><label>Title</label><input type="text" class="finput" name="pkg_spiti_title" value=""></div>
+              <div class="field"><label>Description</label><textarea class="ftextarea" name="pkg_spiti_desc">/textarea></div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-head">💑 Honeymoon Package</div>
+            <div class="form-row">
+              <div class="field"><label>Title</label><input type="text" class="finput" name="pkg_honeymoon_title" value=""></div>
+              <div class="field"><label>Description</label><textarea class="ftextarea" name="pkg_honeymoon_desc">/textarea></div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="section-head">👨‍👩‍👧‍👦 Family Package</div>
+            <div class="form-row">
+              <div class="field"><label>Title</label><input type="text" class="finput" name="pkg_family_title" value=""></div>
+              <div class="field"><label>Description</label><textarea class="ftextarea" name="pkg_family_desc">/textarea></div>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn-gold">Save Packages</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ══════════ ABOUT ══════════ -->
+      <section id="panel-about" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">About Section Editor</div>
+              <div class="card-subtitle">Dynamic Component</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'about')">
+            <div class="form-row">
+              <div class="field"><label>Section Tagline</label><input type="text" class="finput" name="about_subtitle" value=""></div>
+              <div class="field"><label>Main Title</label><input type="text" class="finput" name="about_title" value=""></div>
+            </div>
+            <div class="field"><label>Paragraph 1 — Main Intro</label><textarea class="ftextarea" rows="4" name="about_description1">/textarea></div>
+            <div class="field"><label>Paragraph 2 — Highlights Summary</label><textarea class="ftextarea" rows="4" name="about_description2">/textarea></div>
+
+            <div class="divider"></div>
+            <div class="field"><label>Section Image</label></div>
+            <div class="img-upload-row">
+              <div class="img-preview"><img id="prev-about" src="" alt="About"></div>
+              <div class="img-controls">
+                <div class="img-input-row">
+                  <input type="text" class="finput" name="about_image" id="url-about" value="" style="flex:1;">
+                  <button type="button" class="btn-upload" onclick="document.getElementById('file-about').click()">Upload…</button>
+                </div>
+                <input type="file" id="file-about" class="hidden" accept="image/*" onchange="uploadImg(this,'url-about','prev-about')" style="display:none;">
+                <span class="img-hint">Stored at /public/uploads/</span>
+              </div>
+            </div>
+
+            <div class="form-footer"><button type="submit" class="btn-gold">Save About Settings</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ══════════ OWNER ══════════ -->
+      <section id="panel-owner" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Meet The Owner Editor</div>
+              <div class="card-subtitle">Dynamic Component</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'owner')">
+            <div class="form-row">
+              <div class="field"><label>Owner Name</label><input type="text" class="finput" name="owner_name" value=""></div>
+              <div class="field"><label>Title Prefix (e.g. MEET)</label><input type="text" class="finput" name="owner_title" value=""></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Designation</label><input type="text" class="finput" name="owner_designation" value=""></div>
+              <div class="field"><label>Philosophy Line</label><input type="text" class="finput" name="owner_philosophy" value=""></div>
+            </div>
+            <div class="field"><label>Editorial Quote</label><textarea class="ftextarea" rows="4" name="owner_quote">/textarea></div>
+
+            <div class="divider"></div>
+            <div class="field"><label>Owner Portrait Image</label></div>
+            <div class="img-upload-row">
+              <div class="img-preview"><img id="prev-owner" src="" alt="Owner"></div>
+              <div class="img-controls">
+                <div class="img-input-row">
+                  <input type="text" class="finput" name="owner_image" id="url-owner" value="" style="flex:1;">
+                  <button type="button" class="btn-upload" onclick="document.getElementById('file-owner').click()">Upload…</button>
+                </div>
+                <input type="file" id="file-owner" class="hidden" accept="image/*" onchange="uploadImg(this,'url-owner','prev-owner')" style="display:none;">
+                <span class="img-hint">Stored at /public/uploads/</span>
+              </div>
+            </div>
+
+            <div class="form-footer"><button type="submit" class="btn-gold">Save Owner Settings</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ══════════ CATERING ══════════ -->
+      <section id="panel-catering" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Camp Catering Services</div>
+              <div class="card-subtitle">Menu Items Editor</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'catering')">
+            
+            
+            
+              <div class="catering-item">
+                <div class="item-header">
+                  <span class="item-num">/span>
+                  <span class="item-header-label">Catering Item </span>
+                </div>
+                <div class="form-row">
+                  <div class="field"><label>Item Title</label><input type="text" class="finput" name="catering__title" value=""></div>
+                  <div class="field"><label>Description</label><input type="text" class="finput" name="catering__desc" value=""></div>
+                </div>
+              </div>
+            
+            <div class="form-footer"><button type="submit" class="btn-gold">Save Catering Menu</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ══════════ EQUIPMENT ══════════ -->
+      <section id="panel-equipment" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Equipment Specs — 3D Showcase</div>
+              <div class="card-subtitle">WebGL Interactive Section</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'equipment')">
+            <div class="field"><label>WebGL Section Title</label><input type="text" class="finput" name="equipment_title" value=""></div>
+
+            <% const eqList = [
+              {key:'tent',     icon:'⛺', label:'Tent — Geodesic Dome'},
+              {key:'compass',  icon:'🧭', label:'Compass'},
+              {key:'campfire', icon:'🔥', label:'Campfire Hearth'},
+              {key:'heart',    icon:'💎', label:'Love Heart'}
+            ]; %>
+
+            
+              
+              <div class="eq-block">
+                <div class="eq-block-label">/div>
+                <div class="form-row">
+                  <div class="field"><label>Tab Title</label><input type="text" class="finput" name="eq__title" value=""></div>
+                  <div class="field"><label>Tab Subtitle</label><input type="text" class="finput" name="eq__subtitle" value=""></div>
+                </div>
+                <div class="field" style="margin-top:14px;"><label>Info Panel Description</label><textarea class="ftextarea" rows="3" name="eq__desc">/textarea></div>
+              </div>
+            
+
+            <div class="form-footer"><button type="submit" class="btn-gold">Save Equipment Specs</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ══════════ CONTACTS ══════════ -->
+      <section id="panel-contact" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Global Contacts &amp; Branding</div>
+              <div class="card-subtitle">Live Sync</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'contact')">
+            <div class="field" style="max-width:360px;">
+              <label>Site Display Name</label>
+              <input type="text" class="finput" name="global_site_name" value="Soil Village">
+            </div>
+
+            <div class="divider"></div>
+            <div class="info-box">Changes here update the footer phone, email, WhatsApp link, and location displayed on the live website.</div>
+
+            <div class="form-row">
+              <div class="field"><label>📞 Phone Number</label><input type="text" class="finput" name="footer_phone" value="" placeholder="+91 96506 40715"></div>
+              <div class="field"><label>📱 WhatsApp (digits only)</label><input type="text" class="finput" name="footer_whatsapp" value="" placeholder="919650640715"></div>
+            </div>
+            <div class="field" style="max-width:420px;">
+              <label>✉️ Email Address</label>
+              <input type="email" class="finput" name="footer_email" value="">
+            </div>
+            <div class="form-row">
+              <div class="field"><label>📍 Location Text</label><textarea class="ftextarea" rows="3" name="footer_location">/textarea></div>
+              <div class="field"><label>🗺️ Google Maps URL</label><input type="url" class="finput" name="footer_location_map_url" value=""></div>
+            </div>
+
+            <div class="form-footer"><button type="submit" class="btn-gold">Save Contact Details</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ══════════ SOCIAL LINKS ══════════ -->
+      <section id="panel-footer" class="tab-panel">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Footer &amp; Social Media</div>
+              <div class="card-subtitle">Dynamic Links</div>
+            </div>
+          </div>
+          <form class="form-section" onsubmit="saveSettings(event,'footer')">
+            <div class="info-box">Update the social media profile URLs shown in the footer. These links open in a new tab when visitors click the icons.</div>
+
+            <div class="field">
+              <label>
+                <span style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);align-items:center;justify-content:center;vertical-align:middle;margin-right:6px;">
+                  <svg fill="white" viewBox="0 0 24 24" style="width:10px;height:10px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </span>
+                Instagram Profile URL
+              </label>
+              <input type="url" class="finput" name="footer_social_instagram" value="" placeholder="https://instagram.com/yourprofile">
+            </div>
+
+            <div class="field">
+              <label>
+                <span style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#1877f2;align-items:center;justify-content:center;vertical-align:middle;margin-right:6px;">
+                  <svg fill="white" viewBox="0 0 24 24" style="width:10px;height:10px;"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                </span>
+                Facebook Page URL
+              </label>
+              <input type="url" class="finput" name="footer_social_facebook" value="" placeholder="https://facebook.com/yourpage">
+            </div>
+
+            <div class="field">
+              <label>
+                <span style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#ff0000;align-items:center;justify-content:center;vertical-align:middle;margin-right:6px;">
+                  <svg fill="white" viewBox="0 0 24 24" style="width:10px;height:10px;"><path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.107C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.388.511a3.002 3.002 0 00-2.11 2.107C0 8.053 0 12 0 12s0 3.947.502 5.837a3.003 3.003 0 002.11 2.107c1.883.511 9.388.511 9.388.511s7.505 0 9.388-.511a3.002 3.002 0 002.11-2.107C24 15.947 24 12 24 12s0-3.947-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </span>
+                YouTube Channel URL
+              </label>
+              <input type="url" class="finput" name="footer_social_youtube" value="" placeholder="https://youtube.com/@yourchannel">
+            </div>
+
+            <div class="form-footer"><button type="submit" class="btn-gold">Save Social Links</button></div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MODALS
+  ══════════════════════════════════════ -->
+
+  <!-- LOADING -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+    <span class="spinner-label" id="loading-label">Saving…</span>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="check-circle">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <span class="check-label" id="success-label">Saved!</span>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toast-icon">✓</span>
+    <span id="toast-msg">Done!</span>
+  </div>
+
+  <!-- CONFIRM DELETE -->
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-box">
+      <div class="confirm-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      </div>
+      <div class="confirm-title">Confirm Delete</div>
+      <p class="confirm-msg" id="confirm-msg">Are you sure you want to permanently delete this enquiry? This action cannot be undone.</p>
+      <div class="confirm-actions">
+        <button class="confirm-no" onclick="closeConfirm()">Cancel</button>
+        <button class="confirm-yes" id="confirm-ok-btn">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENQUIRY VIEW -->
+  <div class="enquiry-overlay" id="enquiry-overlay">
+    <div class="enquiry-box">
+      <div class="enq-header">
+        <div>
+          <div class="enq-label">Enquiry Details</div>
+          <div class="enq-name" id="enq-name">—</div>
+        </div>
+        <button class="enq-close" onclick="closeEnquiry()">✕</button>
+      </div>
+      <div class="enq-body">
+        <div id="enq-status"></div>
+        <div id="enq-fields"></div>
+        <div class="enq-actions">
+          <button class="abtn abtn-ok"     id="enq-btn-ok">✓ Confirm</button>
+          <button class="abtn abtn-cancel" id="enq-btn-cancel">✕ Cancel</button>
+          <button class="abtn abtn-del"    id="enq-btn-del">🗑 Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════ -->
+  <script>
+    // ─── Data ────────────────────────────────────────────────
+    let allBookings = ;
+    let filterStatus = 'all';
+
+    // ─── Tab Switching ────────────────────────────────────────
+    function switchTab(id) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      const panel = document.getElementById('panel-' + id);
+      const nav   = document.getElementById('nav-' + id);
+      if (panel) panel.classList.add('active');
+      if (nav)   nav.classList.add('active');
+      localStorage.setItem('admin_tab', id);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('admin_tab') || 'bookings';
+      switchTab(saved);
+    });
+
+    // ─── Toast ────────────────────────────────────────────────
+    function showToast(msg, isError = false) {
+      const t = document.getElementById('toast');
+      const m = document.getElementById('toast-msg');
+      const i = document.getElementById('toast-icon');
+      m.textContent = msg;
+      i.textContent = isError ? '✕' : '✓';
+      t.className = 'toast show ' + (isError ? 'toast-error' : 'toast-success');
+      setTimeout(() => t.classList.remove('show'), 3600);
+    }
+
+    // ─── Loading / Success ────────────────────────────────────
+    function showLoading(txt) {
+      document.getElementById('loading-label').textContent = txt || 'Saving…';
+      document.getElementById('loading-overlay').classList.add('active');
+    }
+    function hideLoading() {
+      document.getElementById('loading-overlay').classList.remove('active');
+    }
+    function showSuccess(txt) {
+      document.getElementById('success-label').textContent = txt || 'Saved!';
+      const el = document.getElementById('success-overlay');
+      el.classList.add('active');
+      setTimeout(() => el.classList.remove('active'), 1900);
+    }
+
+    // ─── Filter / Search ──────────────────────────────────────
+    function setFilter(status) {
+      filterStatus = status;
+      ['all','pending','confirmed','cancelled'].forEach(s => {
+        const pill = document.getElementById('pill-' + s);
+        if (!pill) return;
+        pill.className = 'filter-pill' + (s === status ? ' active-' + s : '');
+      });
+      filterBookings();
+    }
+
+    function filterBookings() {
+      const q = (document.getElementById('search-input').value || '').toLowerCase().trim();
+      let visible = 0;
+      allBookings.forEach(b => {
+        const row = document.getElementById('row-' + b.id);
+        if (!row) return;
+        const statusOk = filterStatus === 'all' || b.status === filterStatus;
+        const searchOk = !q || [b.id, b.name, b.phone, b.email, b.package, b.message || ''].some(v => v.toLowerCase().includes(q));
+        if (statusOk && searchOk) { row.style.display = ''; visible++; }
+        else row.style.display = 'none';
+      });
+      const nm = document.getElementById('no-results-msg');
+      if (nm) nm.style.display = (visible === 0 && allBookings.length > 0) ? 'block' : 'none';
+    }
+
+    function updateCounters() {
+      const total     = allBookings.length;
+      const pending   = allBookings.filter(b => b.status === 'pending').length;
+      const confirmed = allBookings.filter(b => b.status === 'confirmed').length;
+      document.getElementById('stat-total').textContent     = total;
+      document.getElementById('stat-pending').textContent   = pending;
+      document.getElementById('stat-confirmed').textContent = confirmed;
+    }
+
+    // ─── Update Status ────────────────────────────────────────
+    async function updateStatus(id, status) {
+      try {
+        const res = await fetch(`/admin/api/bookings/${id}/status`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status })
+        });
+        if (res.status === 401) { showToast('Session expired. Redirecting…', true); setTimeout(() => location.href='/admin/login', 1500); return; }
+        let result;
+        try { result = await res.json(); } catch(e) { showToast('Server error.', true); return; }
+        if (!res.ok) { showToast(result.message || `Error ${res.status}`, true); return; }
+        if (result.success) {
+          const badge = document.getElementById('badge-' + id);
+          if (badge) {
+            badge.textContent = status;
+            badge.className = 'status-badge status-' + status;
+          }
+          const idx = allBookings.findIndex(b => b.id === id);
+          if (idx !== -1) allBookings[idx].status = status;
+          updateCounters();
+          filterBookings();
+          showToast(`Booking ${id} → ${status}`);
+        } else { showToast(result.message || 'Failed to update.', true); }
+      } catch(e) { showToast('Network error — is the server running?', true); }
+    }
+
+    // ─── Delete Booking ───────────────────────────────────────
+    function deleteBooking(id) {
+      showConfirm('Are you sure you want to permanently delete this enquiry? This cannot be undone.', async () => {
+        try {
+          const res = await fetch(`/admin/api/bookings/${id}`, { method: 'DELETE' });
+          if (res.status === 401) { showToast('Session expired. Redirecting…', true); setTimeout(() => location.href='/admin/login', 1500); return; }
+          let result;
+          try { result = await res.json(); } catch(e) { showToast('Server error.', true); return; }
+          if (!res.ok) { showToast(result.message || `Error ${res.status}`, true); return; }
+          if (result.success) {
+            const row = document.getElementById('row-' + id);
+            if (row) {
+              row.style.transition = 'opacity 0.3s, transform 0.3s';
+              row.style.opacity = '0';
+              row.style.transform = 'translateX(-16px)';
+              setTimeout(() => row.remove(), 320);
+            }
+            const idx = allBookings.findIndex(b => b.id === id);
+            if (idx !== -1) allBookings.splice(idx, 1);
+            updateCounters();
+            filterBookings();
+            showToast(`Booking ${id} deleted.`);
+          } else { showToast(result.message || 'Failed to delete.', true); }
+        } catch(e) { showToast('Network error — is the server running?', true); }
+      });
+    }
+
+    // ─── Confirm Modal ────────────────────────────────────────
+    function showConfirm(msg, onOk) {
+      document.getElementById('confirm-msg').textContent = msg;
+      document.getElementById('confirm-ok-btn').onclick = () => { closeConfirm(); if (typeof onOk === 'function') onOk(); };
+      document.getElementById('confirm-overlay').classList.add('active');
+    }
+    function closeConfirm() {
+      document.getElementById('confirm-overlay').classList.remove('active');
+    }
+
+    // ─── Enquiry Modal ────────────────────────────────────────
+    function openEnquiry(b) {
+      document.getElementById('enq-name').textContent = b.name;
+      const colors = {
+        confirmed: { bg:'rgba(13,187,149,0.12)', border:'rgba(13,187,149,0.35)', color:'#6ee7b7' },
+        pending:   { bg:'rgba(234,179,8,0.12)',  border:'rgba(234,179,8,0.3)',   color:'#fde047' },
+        cancelled: { bg:'rgba(239,68,68,0.12)',  border:'rgba(239,68,68,0.3)',   color:'#fca5a5' }
+      };
+      const c = colors[b.status] || colors.pending;
+      document.getElementById('enq-status').innerHTML = `<span style="display:inline-block;padding:5px 16px;border-radius:20px;background:${c.bg};border:1px solid ${c.border};color:${c.color};font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;font-family:'Outfit',sans-serif;margin-bottom:14px;">${b.status}</span>`;
+
+      const d = new Date(b.timestamp);
+      const ds = d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) + ' at ' + d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+
+      const fields = [
+        { k:'Enquiry ID', v: b.id, mono: true },
+        { k:'Submitted', v: ds },
+        { k:'Full Name', v: b.name, bold: true },
+        { k:'Phone',     v: b.phone, href:`tel:${b.phone}` },
+        { k:'Email',     v: b.email, href:`mailto:${b.email}` },
+        { k:'Package',   v: b.package },
+        { k:'Travelers', v: b.travelers + (b.travelers > 1 ? ' people' : ' person') },
+        { k:'Travel Date', v: b.date || '—' },
+        { k:'Message',   v: b.message || '(No message)', italic: !b.message }
+      ];
+
+      document.getElementById('enq-fields').innerHTML = fields.map(f => `
+        <div class="enq-field">
+          <span class="enq-key">${f.k}</span>
+          <span class="enq-val" style="${f.mono?'font-family:monospace;color:var(--gold);':''}${f.bold?'font-weight:700;font-size:15px;':''}${f.italic?'color:var(--cream-faint);font-style:italic;font-size:12px;':''}">
+            ${f.href ? `<a href="${f.href}" target="_blank">${f.v}</a>` : f.v}
+          </span>
+        </div>
+      `).join('');
+
+      document.getElementById('enq-btn-ok').onclick     = () => { closeEnquiry(); updateStatus(b.id, 'confirmed'); };
+      document.getElementById('enq-btn-cancel').onclick = () => { closeEnquiry(); updateStatus(b.id, 'cancelled'); };
+      document.getElementById('enq-btn-del').onclick    = () => { closeEnquiry(); deleteBooking(b.id); };
+
+      document.getElementById('enquiry-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeEnquiry() {
+      document.getElementById('enquiry-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // ─── Image Upload ─────────────────────────────────────────
+    async function uploadImg(fileInput, urlId, previewId) {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const fd = new FormData();
+      fd.append('image', file);
+      try {
+        showToast('Uploading image…');
+        const res = await fetch('/admin/api/upload', { method: 'POST', body: fd });
+        if (res.status === 401) { showToast('Session expired. Redirecting…', true); setTimeout(() => location.href='/admin/login', 1500); return; }
+        let result;
+        try { result = await res.json(); } catch(e) { showToast('Server error.', true); return; }
+        if (!res.ok) { showToast(result.message || `Error ${res.status}`, true); return; }
+        if (result.success) {
+          document.getElementById(urlId).value = result.filePath;
+          document.getElementById(previewId).src = result.filePath;
+          showToast('Image uploaded!');
+        } else { showToast(result.message || 'Upload failed.', true); }
+      } catch(e) { showToast('Network error — is the server running?', true); }
+    }
+
+    // ─── Save Settings ────────────────────────────────────────
+    async function saveSettings(event, section) {
+      event.preventDefault();
+      const fd = new FormData(event.target);
+      let data = {};
+
+      if (section === 'about') {
+        data.about = { title: fd.get('about_title'), subtitle: fd.get('about_subtitle'), description1: fd.get('about_description1'), description2: fd.get('about_description2'), image: fd.get('about_image') };
+      } else if (section === 'owner') {
+        data.owner = { name: fd.get('owner_name'), title: fd.get('owner_title'), subtitle: 'The Owner', designation: fd.get('owner_designation'), philosophy: fd.get('owner_philosophy'), quote: fd.get('owner_quote'), image: fd.get('owner_image') };
+      } else if (section === 'packages') {
+        data.packages = { subtitle: fd.get('packages_subtitle'), solang: { title: fd.get('pkg_solang_title'), desc: fd.get('pkg_solang_desc') }, spiti: { title: fd.get('pkg_spiti_title'), desc: fd.get('pkg_spiti_desc') }, honeymoon: { title: fd.get('pkg_honeymoon_title'), desc: fd.get('pkg_honeymoon_desc') }, family: { title: fd.get('pkg_family_title'), desc: fd.get('pkg_family_desc') } };
+      } else if (section === 'contact') {
+        data.global = { siteName: fd.get('global_site_name') };
+        data.footer = { phone: fd.get('footer_phone'), whatsapp: fd.get('footer_whatsapp'), email: fd.get('footer_email'), location: fd.get('footer_location'), location_map_url: fd.get('footer_location_map_url') };
+      } else if (section === 'catering') {
+        const items = [];
+        for (let i = 0; i < 5; i++) items.push({ title: fd.get('catering_' + i + '_title') || '', desc: fd.get('catering_' + i + '_desc') || '' });
+        data.catering = { items };
+      } else if (section === 'equipment') {
+        data.equipment = { title: fd.get('equipment_title') || 'WebGL Inspector', tent: { title: fd.get('eq_tent_title') || '', subtitle: fd.get('eq_tent_subtitle') || '', desc: fd.get('eq_tent_desc') || '' }, compass: { title: fd.get('eq_compass_title') || '', subtitle: fd.get('eq_compass_subtitle') || '', desc: fd.get('eq_compass_desc') || '' }, campfire: { title: fd.get('eq_campfire_title') || '', subtitle: fd.get('eq_campfire_subtitle') || '', desc: fd.get('eq_campfire_desc') || '' }, heart: { title: fd.get('eq_heart_title') || '', subtitle: fd.get('eq_heart_subtitle') || '', desc: fd.get('eq_heart_desc') || '' } };
+      } else if (section === 'footer') {
+        data.footer = { social: { instagram: fd.get('footer_social_instagram'), facebook: fd.get('footer_social_facebook'), youtube: fd.get('footer_social_youtube') } };
+      }
+
+      try {
+        showLoading('Saving ' + section + '…');
+        const res = await fetch('/admin/api/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        hideLoading();
+        if (res.status === 401) { showToast('Session expired. Redirecting…', true); setTimeout(() => location.href='/admin/login', 1500); return; }
+        let result;
+        try { result = await res.json(); } catch(e) { showToast('Server returned invalid response.', true); return; }
+        if (!res.ok) { showToast(result.message || `Server error (${res.status})`, true); return; }
+        if (result.success) { showSuccess(section.toUpperCase() + ' Saved!'); showToast(section.toUpperCase() + ' settings saved!'); }
+        else { showToast(result.message || 'Failed to save.', true); }
+      } catch(e) { hideLoading(); showToast('Network error — is the server running?', true); }
+    }
+
+    // ─── CSV Export ───────────────────────────────────────────
+    function exportCSV() {
+      if (!allBookings.length) { showToast('No enquiries to export.', true); return; }
+      const headers = ['ID','Timestamp','Name','Phone','Email','Travelers','Date','Package','Status','Message'];
+      const rows = allBookings.map(b => [
+        b.id, b.timestamp,
+        `"${b.name.replace(/"/g,'""')}"`,
+        `"${b.phone}"`,
+        `"${b.email}"`,
+        b.travelers, b.date, b.package, b.status,
+        `"${(b.message||'').replace(/"/g,'""')}"`
+      ].join(','));
+      const csv = [headers.join(','), ...rows].join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = `soil-enquiries-${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      showToast('Exported to CSV!');
+    }
+  </script>
+
+
+  <script>
+    // Fetch data and populate
+    async function loadDashboardData() {
+      const token = localStorage.getItem('admin_token');
+      if (!token) {
+        window.location.href = '/admin/index.html';
+        return;
+      }
+      try {
+        const res = await fetch('https://manali-backend.onrender.com/admin/api/dashboard-data', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        const data = await res.json();
+        if (data.success) {
+          populateBookings(data.bookings);
+          populateSettings(data.settings);
+        } else {
+          localStorage.removeItem('admin_token');
+          window.location.href = '/admin/index.html';
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    
+    function populateBookings(bookings) {
+      document.getElementById('stat-total').textContent = bookings.length;
+      document.getElementById('stat-pending').textContent = bookings.filter(b => b.status === 'pending').length;
+      document.getElementById('stat-confirmed').textContent = bookings.filter(b => b.status === 'confirmed').length;
+      
+      const tbody = document.getElementById('bookings-tbody');
+      tbody.innerHTML = '';
+      if (bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;">No bookings found.</td></tr>';
+        return;
+      }
+      
+      bookings.forEach(b => {
+        const tr = document.createElement('tr');
+        tr.id = 'row-' + b.id;
+        tr.innerHTML = `
+          <td>
+            <div class="booking-id-wrap">
+              <span class="booking-id">${b.id}</span>
+              <span class="booking-date">${new Date(b.timestamp).toLocaleDateString()}</span>
+            </div>
+          </td>
+          <td>
+            <div class="client-info">
+              <span class="client-name">${b.name}</span>
+              <span class="client-phone">${b.phone}</span>
+              <span class="client-email">${b.email}</span>
+            </div>
+          </td>
+          <td>
+            <div class="pkg-info">
+              <span class="pkg-badge">${b.package}</span>
+              <div class="pkg-meta">${b.travelers} traveler(s) · ${b.date}</div>
+            </div>
+          </td>
+          <td>
+            <span id="badge-${b.id}" class="status-badge status-${b.status}">${b.status}</span>
+          </td>
+          <td>
+            <div class="action-cell">
+              <button class="abtn abtn-ok" onclick="updateStatus('${b.id}', 'confirmed')">✓</button>
+              <button class="abtn abtn-cancel" onclick="updateStatus('${b.id}', 'cancelled')">✗</button>
+              <button class="abtn abtn-del" onclick="deleteBooking('${b.id}')">🗑</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function populateSettings(settings) {
+      if (!settings) return;
+      // Global
+      if (settings.global) {
+        if(document.getElementsByName('siteName')[0]) document.getElementsByName('siteName')[0].value = settings.global.siteName || '';
+        if(document.getElementsByName('phone')[0]) document.getElementsByName('phone')[0].value = settings.global.phone || '';
+        if(document.getElementsByName('email')[0]) document.getElementsByName('email')[0].value = settings.global.email || '';
+        if(document.getElementsByName('whatsapp')[0]) document.getElementsByName('whatsapp')[0].value = settings.global.whatsapp || '';
+        if(document.getElementsByName('instagram')[0]) document.getElementsByName('instagram')[0].value = settings.global.instagram || '';
+      }
+      // Packages
+      if (settings.packages) {
+        if(document.getElementsByName('packages_subtitle')[0]) document.getElementsByName('packages_subtitle')[0].value = settings.packages.subtitle || '';
+        if(settings.packages.solang) {
+          if(document.getElementsByName('pkg_solang_title')[0]) document.getElementsByName('pkg_solang_title')[0].value = settings.packages.solang.title || '';
+          if(document.getElementsByName('pkg_solang_desc')[0]) document.getElementsByName('pkg_solang_desc')[0].value = settings.packages.solang.desc || '';
+        }
+        if(settings.packages.spiti) {
+          if(document.getElementsByName('pkg_spiti_title')[0]) document.getElementsByName('pkg_spiti_title')[0].value = settings.packages.spiti.title || '';
+          if(document.getElementsByName('pkg_spiti_desc')[0]) document.getElementsByName('pkg_spiti_desc')[0].value = settings.packages.spiti.desc || '';
+        }
+        if(settings.packages.honeymoon) {
+          if(document.getElementsByName('pkg_honeymoon_title')[0]) document.getElementsByName('pkg_honeymoon_title')[0].value = settings.packages.honeymoon.title || '';
+          if(document.getElementsByName('pkg_honeymoon_desc')[0]) document.getElementsByName('pkg_honeymoon_desc')[0].value = settings.packages.honeymoon.desc || '';
+        }
+        if(settings.packages.family) {
+          if(document.getElementsByName('pkg_family_title')[0]) document.getElementsByName('pkg_family_title')[0].value = settings.packages.family.title || '';
+          if(document.getElementsByName('pkg_family_desc')[0]) document.getElementsByName('pkg_family_desc')[0].value = settings.packages.family.desc || '';
+        }
+      }
+      // About
+      if (settings.about) {
+        if(document.getElementsByName('about_subtitle')[0]) document.getElementsByName('about_subtitle')[0].value = settings.about.subtitle || '';
+        if(document.getElementsByName('about_title')[0]) document.getElementsByName('about_title')[0].value = settings.about.title || '';
+        if(document.getElementsByName('about_description1')[0]) document.getElementsByName('about_description1')[0].value = settings.about.description1 || '';
+        if(document.getElementsByName('about_description2')[0]) document.getElementsByName('about_description2')[0].value = settings.about.description2 || '';
+        if(document.getElementsByName('about_image')[0]) document.getElementsByName('about_image')[0].value = settings.about.image || '';
+      }
+      // Owner
+      if (settings.owner) {
+        if(document.getElementsByName('owner_name')[0]) document.getElementsByName('owner_name')[0].value = settings.owner.name || '';
+        if(document.getElementsByName('owner_title')[0]) document.getElementsByName('owner_title')[0].value = settings.owner.title || '';
+        if(document.getElementsByName('owner_designation')[0]) document.getElementsByName('owner_designation')[0].value = settings.owner.designation || '';
+        if(document.getElementsByName('owner_philosophy')[0]) document.getElementsByName('owner_philosophy')[0].value = settings.owner.philosophy || '';
+        if(document.getElementsByName('owner_quote')[0]) document.getElementsByName('owner_quote')[0].value = settings.owner.quote || '';
+        if(document.getElementsByName('owner_image')[0]) document.getElementsByName('owner_image')[0].value = settings.owner.image || '';
+      }
+    }
+    
+    // Override API endpoints in the existing script
+    window.API_BASE = 'https://manali-backend.onrender.com';
+    const originalFetch = window.fetch;
+    window.fetch = function() {
+      let [resource, config] = arguments;
+      if (typeof resource === 'string' && resource.startsWith('/admin/api')) {
+        resource = window.API_BASE + resource;
+        config = config || {};
+        config.headers = config.headers || {};
+        config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('admin_token');
+      }
+      return originalFetch(resource, config);
+    };
+
+    document.addEventListener('DOMContentLoaded', loadDashboardData);
+  </script>
+</body>
+</html>
+

@@ -361,16 +361,7 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
-// Admin Navigation (SSR)
-app.get('/admin', (req, res) => {
-  if (checkAuth(req)) return res.redirect('/admin/dashboard');
-  res.render('admin/login', { error: null, settings: getSettings() });
-});
-
-app.get('/admin/login', (req, res) => {
-  if (checkAuth(req)) return res.redirect('/admin/dashboard');
-  res.render('admin/login', { error: null, settings: getSettings() });
-});
+// --- Admin SSR Routes Removed ---
 
 // JSON Login API for Static Frontend
 app.post('/admin/api/login', (req, res) => {
@@ -410,47 +401,7 @@ app.get('/admin/api/dashboard-data', apiAuthMiddleware, (req, res) => {
   });
 });
 
-app.post('/admin/login', (req, res) => {
-  const { username, password } = req.body;
-  if (username === ADMIN_USER && password === ADMIN_PASS) {
-    const token = signJWT({
-      sub: 'admin',
-      iat: Date.now(),
-      exp: Date.now() + JWT_EXPIRY_HOURS * 60 * 60 * 1000
-    });
-    const maxAge = JWT_EXPIRY_HOURS * 60 * 60; // seconds
-    res.setHeader('Set-Cookie', `admin_jwt=${token}; Path=/; HttpOnly; Max-Age=${maxAge}; SameSite=None; Secure`);
-    return res.redirect('/admin/dashboard');
-  }
-  res.render('admin/login', { error: 'Invalid username or password', settings: getSettings() });
-});
-
-app.get('/admin/logout', (req, res) => {
-  // Clear the JWT cookie
-  res.setHeader('Set-Cookie', 'admin_jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=None; Secure');
-  res.redirect('/admin/');
-});
-
-app.get('/admin/dashboard', authMiddleware, (req, res) => {
-  // Load bookings
-  const bookingsFile = path.join(__dirname, 'data', 'bookings.json');
-  let bookings = [];
-  try {
-    if (fs.existsSync(bookingsFile)) {
-      bookings = JSON.parse(fs.readFileSync(bookingsFile, 'utf8') || '[]');
-    }
-  } catch (err) {
-    console.error('Error loading bookings:', err);
-  }
-  
-  // Sort bookings newest first
-  bookings.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-  res.render('admin/dashboard', {
-    bookings,
-    settings: getSettings()
-  });
-});
+// --- Admin SSR Form Submission & Dashboard Routes Removed ---
 
 // Admin API - Update Settings
 app.post('/admin/api/settings', apiAuthMiddleware, (req, res) => {

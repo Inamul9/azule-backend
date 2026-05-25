@@ -116,7 +116,19 @@ const parseCookies = (req) => {
 // Check if request is authenticated
 const checkAuth = (req) => {
   const cookies = parseCookies(req);
-  return !!verifyJWT(cookies.admin_jwt);
+  if (cookies.admin_jwt && verifyJWT(cookies.admin_jwt)) {
+    return true;
+  }
+  if (req.headers.authorization) {
+    const parts = req.headers.authorization.split(' ');
+    if (parts.length === 2 && parts[0] === 'Bearer') {
+      if (verifyJWT(parts[1])) return true;
+    }
+  }
+  if (req.query && req.query.token) {
+    if (verifyJWT(req.query.token)) return true;
+  }
+  return false;
 };
 
 // Authentication Middleware (redirects for pages)
@@ -261,9 +273,13 @@ const getSettings = () => {
   };
 };
 
-// Root Route (Redirects to Admin Dashboard since frontend is hosted separately)
+// Root Route
 app.get('/', (req, res) => {
-  res.redirect('/admin/dashboard');
+  res.render('index', {
+    title: 'SOIL VILLAGE – Solang Valley, Manali',
+    settings: getSettings(),
+    isAdmin: false
+  });
 });
 
 // API endpoint for bookings
@@ -345,23 +361,19 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
-// Admin Navigation
+// Admin Navigation (SSR)
 app.get('/admin', (req, res) => {
-  if (checkAuth(req)) {
-    res.redirect('/admin/dashboard');
-  } else {
-    res.redirect('/admin/login');
-  }
-});
-
-app.get('/admin/login', (req, res) => {
-  if (checkAuth(req)) {
-    return res.redirect('/admin/dashboard');
-  }
+  if (checkAuth(req)) return res.redirect('/admin/dashboard');
   res.render('admin/login', { error: null, settings: getSettings() });
 });
 
-app.post('/admin/login', (req, res) => {
+app.get('/admin/login', (req, res) => {
+  if (checkAuth(req)) return res.redirect('/admin/dashboard');
+  res.render('admin/login', { error: null, settings: getSettings() });
+});
+
+// JSON Login API for Static Frontend
+app.post('/admin/api/login', (req, res) => {
   const { username, password } = req.body;
   if (username === ADMIN_USER && password === ADMIN_PASS) {
     // Sign a JWT that expires in 24 hours
@@ -370,8 +382,44 @@ app.post('/admin/login', (req, res) => {
       iat: Date.now(),
       exp: Date.now() + JWT_EXPIRY_HOURS * 60 * 60 * 1000
     });
+    return res.json({ success: true, token });
+  }
+  return res.status(401).json({ success: false, message: 'Invalid username or password' });
+});
+
+// Admin API - Get Dashboard Data
+app.get('/admin/api/dashboard-data', apiAuthMiddleware, (req, res) => {
+  // Load bookings
+  const bookingsFile = path.join(__dirname, 'data', 'bookings.json');
+  let bookings = [];
+  try {
+    if (fs.existsSync(bookingsFile)) {
+      bookings = JSON.parse(fs.readFileSync(bookingsFile, 'utf8') || '[]');
+    }
+  } catch (err) {
+    console.error('Error loading bookings:', err);
+  }
+  
+  // Sort bookings newest first
+  bookings.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+  res.json({
+    success: true,
+    bookings,
+    settings: getSettings()
+  });
+});
+
+app.post('/admin/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === ADMIN_USER && password === ADMIN_PASS) {
+    const token = signJWT({
+      sub: 'admin',
+      iat: Date.now(),
+      exp: Date.now() + JWT_EXPIRY_HOURS * 60 * 60 * 1000
+    });
     const maxAge = JWT_EXPIRY_HOURS * 60 * 60; // seconds
-    res.setHeader('Set-Cookie', `admin_jwt=${token}; Path=/; HttpOnly; Max-Age=${maxAge}; SameSite=Strict`);
+    res.setHeader('Set-Cookie', `admin_jwt=${token}; Path=/; HttpOnly; Max-Age=${maxAge}; SameSite=None; Secure`);
     return res.redirect('/admin/dashboard');
   }
   res.render('admin/login', { error: 'Invalid username or password', settings: getSettings() });
@@ -379,8 +427,8 @@ app.post('/admin/login', (req, res) => {
 
 app.get('/admin/logout', (req, res) => {
   // Clear the JWT cookie
-  res.setHeader('Set-Cookie', 'admin_jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Strict');
-  res.redirect('/admin/login');
+  res.setHeader('Set-Cookie', 'admin_jwt=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=None; Secure');
+  res.redirect('/admin/');
 });
 
 app.get('/admin/dashboard', authMiddleware, (req, res) => {

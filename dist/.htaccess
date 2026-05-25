@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Proxy /admin to the Vercel backend
+  # NOTE: Replace 'manali-backend.vercel.app' with your actual Vercel backend URL!
+  RewriteRule ^admin/?(.*)$ https://manali-backend.vercel.app/admin/$1 [P,L]
+  RewriteRule ^api/?(.*)$ https://manali-backend.vercel.app/api/$1 [P,L]
+  
+  # Error document
+  ErrorDocument 404 /404.html
+</IfModule>

@@ -659,7 +659,7 @@ function initBookingForm() {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const response = await fetch('https://manali-backend.onrender.com/api/book', {
+      const response = await fetch('https://manali-backend.vercel.app/api/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

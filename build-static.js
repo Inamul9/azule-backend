@@ -210,6 +210,32 @@ ejs.renderFile(errorTemplatePath, {
   console.log('✓ Built dist/404.html');
 });
 
+// ─── Generate Admin Iframe (No .htaccess required!) ────────────────────────────
+const adminDir = path.join(distDir, 'admin');
+if (!fs.existsSync(adminDir)) {
+  fs.mkdirSync(adminDir, { recursive: true });
+}
+
+// Fullscreen iframe that embeds the Vercel backend
+const iframeContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel | Soil Village</title>
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #030b06; }
+    iframe { width: 100%; height: 100%; border: none; }
+  </style>
+</head>
+<body>
+  <!-- NOTE: Replace this URL with your actual Vercel backend URL! -->
+  <iframe src="https://manali-backend.vercel.app/admin"></iframe>
+</body>
+</html>`;
+
+fs.writeFileSync(path.join(adminDir, 'index.html'), iframeContent, 'utf8');
+console.log('✓ Built dist/admin/index.html (Iframe Proxy)');
+
 // ─── Recursively copy a directory ────────────────────────────────────────────
 const copyDir = (src, dest) => {
   if (!fs.existsSync(src)) return;
